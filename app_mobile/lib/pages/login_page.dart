@@ -1,4 +1,7 @@
+import 'package:app_mobile/pages/home_page.dart';
 import 'package:app_mobile/pages/register_page.dart';
+import 'package:app_mobile/user_auth/firebase_auth_implementation/firebase_auth_services.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
@@ -9,7 +12,20 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final FirebaseAuthService _auth = FirebaseAuthService();
+
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
+
   bool _isObscure = true;
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,8 +58,9 @@ class _LoginPageState extends State<LoginPage> {
                       color: Colors.white,
                     ),
                     child: TextField(
+                      controller: _emailController,
                       decoration: InputDecoration(
-                        hintText: "Email or username",
+                        hintText: "Email",
                         hintStyle: TextStyle(
                           fontSize: 15,
                           color: Colors.grey[600],
@@ -62,6 +79,7 @@ class _LoginPageState extends State<LoginPage> {
                       color: Colors.white,
                     ),
                     child: TextField(
+                      controller: _passwordController,
                       obscureText: _isObscure,
                       decoration: InputDecoration(
                         hintText: "Password",
@@ -109,7 +127,7 @@ class _LoginPageState extends State<LoginPage> {
                     primary: Colors.white,
                     side: BorderSide(color: Colors.purple),
                   ),
-                  onPressed: () {},
+                  onPressed: _signIn,
                   child: Text(
                     "Login",
                     style: TextStyle(
@@ -170,5 +188,21 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     );
+  }
+
+  void _signIn() async {
+    String email = _emailController.text;
+    String password = _passwordController.text;
+
+    User? user = await _auth.signInWithEmailAndPassword(email, password);
+
+    if (user != null) {
+      print("User is successfully signin");
+      Navigator.push(context, MaterialPageRoute(builder: (context) {
+        return HomePage();
+      }));
+    } else {
+      print("Some error happend");
+    }
   }
 }

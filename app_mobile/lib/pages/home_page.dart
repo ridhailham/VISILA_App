@@ -19,8 +19,37 @@ class HomePage extends StatelessWidget {
               icon: const Icon(Icons.logout))
         ],
       ),
-      body: Center(
-        child: Text("berhasil login"),
+      body: Column(
+        children: [
+          Center(
+            child: Text("berhasil login"),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Container(
+            height: 45,
+            width: double.infinity,
+            margin: EdgeInsets.symmetric(vertical: 15),
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                primary: Colors.white,
+                side: BorderSide(color: Colors.purple),
+              ),
+              onPressed: () {
+                FirebaseAuth.instance.signOut();
+                Navigator.pop(context);
+              },
+              child: Text(
+                "Logout",
+                style: TextStyle(
+                    fontSize: 17,
+                    color: Colors.purple,
+                    fontWeight: FontWeight.bold),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
