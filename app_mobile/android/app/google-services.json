@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "81519552203",
+    "project_id": "visila-hackfest-2024",
+    "storage_bucket": "visila-hackfest-2024.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:81519552203:android:434a5ef75d119225625d4e",
+        "android_client_info": {
+          "package_name": "com.example.app_mobile"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAFDK6IJ2TGW_N4-3oB_uSpdAxFWXXty5I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
