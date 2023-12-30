@@ -220,12 +220,37 @@ class _LoginPageState extends State<LoginPage> {
     }
   }
 
-  void _handleGoogleSignIn() {
+  void _handleGoogleSignIn() async {
     try {
       GoogleAuthProvider _googleAuthProvider = GoogleAuthProvider();
-      _authGoogle.signInWithProvider(_googleAuthProvider);
+      UserCredential userCredential =
+          await _authGoogle.signInWithProvider(_googleAuthProvider);
+
+      // Autentikasi berhasil, pindah ke halaman beranda
+      User? user = userCredential.user;
+      if (user != null) {
+        Navigator.push(context, MaterialPageRoute(builder: (context) {
+          return HomePage();
+        }));
+      } else {
+        print("User is null after Google sign-in");
+      }
     } catch (error) {
-      print(error);
+      print("Error during Google sign-in: $error");
+      // Tambahkan penanganan kesalahan sesuai kebutuhan
     }
   }
+
+  // void _handleGoogleSignIn() {
+  //   try {
+  //     GoogleAuthProvider _googleAuthProvider = GoogleAuthProvider();
+  //     _authGoogle.signInWithProvider(_googleAuthProvider);
+
+  //     Navigator.push(context, MaterialPageRoute(builder: (context) {
+  //       return HomePage();
+  //     }));
+  //   } catch (error) {
+  //     print(error);
+  //   }
+  // }
 }
