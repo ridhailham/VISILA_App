@@ -63,6 +63,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '81519552203',
     projectId: 'visila-hackfest-2024',
     storageBucket: 'visila-hackfest-2024.appspot.com',
+    iosClientId: '81519552203-d78aec4ejl69f75mc9bb774q8dq9lo3l.apps.googleusercontent.com',
     iosBundleId: 'com.example.appMobile',
   );
 }

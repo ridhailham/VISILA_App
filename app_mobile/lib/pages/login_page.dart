@@ -13,11 +13,24 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final FirebaseAuthService _auth = FirebaseAuthService();
+  final FirebaseAuth _authGoogle = FirebaseAuth.instance;
 
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
 
   bool _isObscure = true;
+
+  User? _user;
+
+  @override
+  void initState() {
+    super.initState();
+    _authGoogle.authStateChanges().listen((event) {
+      setState(() {
+        _user = event;
+      });
+    });
+  }
 
   @override
   void dispose() {
@@ -38,6 +51,7 @@ class _LoginPageState extends State<LoginPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SizedBox(height: 30),
+              Text((_user?.email ?? "")),
               Text("Welcome.",
                   style: TextStyle(
                       fontSize: 30,
@@ -150,7 +164,7 @@ class _LoginPageState extends State<LoginPage> {
                     primary: Colors.purple[300],
                     side: BorderSide(color: Colors.black),
                   ),
-                  onPressed: () {},
+                  onPressed: _handleGoogleSignIn,
                   child: Text(
                     "Sign in with Google",
                     style: TextStyle(color: Colors.white, fontSize: 15),
@@ -197,12 +211,21 @@ class _LoginPageState extends State<LoginPage> {
     User? user = await _auth.signInWithEmailAndPassword(email, password);
 
     if (user != null) {
-      print("User is successfully signin");
+      print("User is successfully signed in");
       Navigator.push(context, MaterialPageRoute(builder: (context) {
         return HomePage();
       }));
     } else {
-      print("Some error happend");
+      print("Some error happened");
+    }
+  }
+
+  void _handleGoogleSignIn() {
+    try {
+      GoogleAuthProvider _googleAuthProvider = GoogleAuthProvider();
+      _authGoogle.signInWithProvider(_googleAuthProvider);
+    } catch (error) {
+      print(error);
     }
   }
 }
