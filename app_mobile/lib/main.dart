@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
         //   title: Text("Welcome.", textAlign: TextAlign.end, style: TextStyle(fontSize: 30, fontWeight: bold)),
 
         // )
-        body: HomePage(),
+        body: LoginPage(),
       ),
       routes: <String, WidgetBuilder>{
         '/login': (BuildContext context) => LoginPage(),

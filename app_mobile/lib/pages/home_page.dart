@@ -17,14 +17,13 @@ class HomePage extends StatelessWidget {
         ),
         title: new Center(
             child: new Text("Home", style: TextStyle(color: Colors.white))),
-        actions: [
-          IconButton(
-              onPressed: () {
-                FirebaseAuth.instance.signOut();
-              },
-              icon: const Icon(Icons.logout),
-              color: Colors.white)
-        ],
+        // actions: [
+        //   IconButton(
+        //       onPressed: () {
+        //         FirebaseAuth.instance.signOut();
+        //       },
+        //       icon: const Icon(Icons.logout))
+        // ],
       ),
       body: Column(
         children: [
