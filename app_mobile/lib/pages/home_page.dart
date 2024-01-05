@@ -10,13 +10,20 @@ class HomePage extends StatelessWidget {
     // TODO: implement build
     return Scaffold(
       appBar: AppBar(
-        title: Text("Home Page"),
+        backgroundColor: Colors.blue[400],
+        leading: new Icon(
+          Icons.home,
+          color: Colors.white,
+        ),
+        title: new Center(
+            child: new Text("Home", style: TextStyle(color: Colors.white))),
         actions: [
           IconButton(
               onPressed: () {
                 FirebaseAuth.instance.signOut();
               },
-              icon: const Icon(Icons.logout))
+              icon: const Icon(Icons.logout),
+              color: Colors.white)
         ],
       ),
       body: Column(
@@ -30,11 +37,11 @@ class HomePage extends StatelessWidget {
           Container(
             height: 45,
             width: double.infinity,
-            margin: EdgeInsets.symmetric(vertical: 15),
+            margin: EdgeInsets.symmetric(vertical: 15, horizontal: 15),
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
                 primary: Colors.white,
-                side: BorderSide(color: Colors.purple),
+                side: BorderSide(color: Colors.blue),
               ),
               onPressed: () {
                 FirebaseAuth.instance.signOut();
@@ -44,7 +51,7 @@ class HomePage extends StatelessWidget {
                 "Logout",
                 style: TextStyle(
                     fontSize: 17,
-                    color: Colors.purple,
+                    color: Colors.blue,
                     fontWeight: FontWeight.bold),
               ),
             ),

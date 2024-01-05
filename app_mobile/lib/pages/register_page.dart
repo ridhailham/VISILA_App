@@ -64,7 +64,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 style: TextStyle(
                     fontSize: 35,
                     fontWeight: FontWeight.bold,
-                    color: Colors.purple[400]),
+                    color: Colors.blue[400]),
               ),
               SizedBox(
                 height: 11,
@@ -77,9 +77,6 @@ class _RegisterPageState extends State<RegisterPage> {
                   Container(
                     width: double.infinity,
                     decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Colors.black,
-                      ),
                       borderRadius: BorderRadius.circular(10),
                       color: whiteColor,
                     ),
@@ -94,6 +91,10 @@ class _RegisterPageState extends State<RegisterPage> {
                         contentPadding:
                             EdgeInsets.symmetric(vertical: 12, horizontal: 15),
                         border: OutlineInputBorder(),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Colors.blue), // Warna border saat diisi
+                        ),
                       ),
                     ),
                   ),
@@ -101,9 +102,6 @@ class _RegisterPageState extends State<RegisterPage> {
                   Container(
                     width: double.infinity,
                     decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Colors.black,
-                      ),
                       borderRadius: BorderRadius.circular(10),
                       color: whiteColor,
                     ),
@@ -118,6 +116,10 @@ class _RegisterPageState extends State<RegisterPage> {
                         contentPadding:
                             EdgeInsets.symmetric(vertical: 12, horizontal: 15),
                         border: OutlineInputBorder(),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Colors.blue), // Warna border saat diisi
+                        ),
                       ),
                     ),
                   ),
@@ -129,9 +131,6 @@ class _RegisterPageState extends State<RegisterPage> {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                       color: whiteColor,
-                      border: Border.all(
-                        color: Colors.black,
-                      ),
                     ),
                     child: TextField(
                       controller: _passwordController,
@@ -155,6 +154,10 @@ class _RegisterPageState extends State<RegisterPage> {
                           },
                         ),
                         border: OutlineInputBorder(),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Colors.blue), // Warna border saat diisi
+                        ),
                       ),
                     ),
                   ),
@@ -248,13 +251,13 @@ class _RegisterPageState extends State<RegisterPage> {
                 child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       primary: Colors.white,
-                      side: BorderSide(color: Colors.purple),
+                      side: BorderSide(color: Colors.blue),
                     ),
                     onPressed: _signUp,
                     child: Text(
                       "Sign Up",
                       style: TextStyle(
-                          color: Colors.purple,
+                          color: Colors.blue,
                           fontWeight: FontWeight.bold,
                           fontSize: 17),
                     )),
@@ -275,7 +278,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     child: Text("Sign in here.",
                         style: TextStyle(
                             fontSize: 13,
-                            color: Colors.purple[400],
+                            color: Colors.blue[400],
                             fontWeight: FontWeight.bold)),
                   ),
                 ],

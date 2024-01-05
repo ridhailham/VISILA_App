@@ -52,11 +52,11 @@ class _LoginPageState extends State<LoginPage> {
             children: [
               SizedBox(height: 30),
               Text((_user?.email ?? "")),
-              Text("Welcome.",
+              Text("WELCOME",
                   style: TextStyle(
                       fontSize: 30,
                       fontWeight: FontWeight.bold,
-                      color: Colors.purple[400])),
+                      color: Colors.blue[400])),
               Text("Sign in to continue", style: TextStyle(fontSize: 18)),
               SizedBox(height: 10),
               SizedBox(height: 30),
@@ -82,6 +82,8 @@ class _LoginPageState extends State<LoginPage> {
                         contentPadding:
                             EdgeInsets.symmetric(vertical: 12, horizontal: 15),
                         border: OutlineInputBorder(),
+                        focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.blue)),
                       ),
                     ),
                   ),
@@ -114,6 +116,10 @@ class _LoginPageState extends State<LoginPage> {
                           },
                         ),
                         border: OutlineInputBorder(),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Colors.blue), // Warna border saat diisi
+                        ),
                       ),
                     ),
                   ),
@@ -139,14 +145,14 @@ class _LoginPageState extends State<LoginPage> {
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     primary: Colors.white,
-                    side: BorderSide(color: Colors.purple),
+                    side: BorderSide(color: Colors.blue),
                   ),
                   onPressed: _signIn,
                   child: Text(
                     "Login",
                     style: TextStyle(
                         fontSize: 17,
-                        color: Colors.purple,
+                        color: Colors.blue,
                         fontWeight: FontWeight.bold),
                   ),
                 ),
@@ -161,8 +167,8 @@ class _LoginPageState extends State<LoginPage> {
                 margin: EdgeInsets.symmetric(vertical: 13),
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.purple[300],
-                    side: BorderSide(color: Colors.black),
+                    primary: Colors.blue[300],
+                    side: BorderSide(color: Colors.white),
                   ),
                   onPressed: _handleGoogleSignIn,
                   child: Text(
@@ -184,15 +190,12 @@ class _LoginPageState extends State<LoginPage> {
                           fontWeight: FontWeight.bold)),
                   InkWell(
                     onTap: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) {
-                        return RegisterPage();
-                      }));
+                      Navigator.pushNamed(context, '/register');
                     },
                     child: Text("Sign up here.",
                         style: TextStyle(
                             fontSize: 13,
-                            color: Colors.purple[400],
+                            color: Colors.blue[400],
                             fontWeight: FontWeight.bold)),
                   ),
                 ],
@@ -212,9 +215,7 @@ class _LoginPageState extends State<LoginPage> {
 
     if (user != null) {
       print("User is successfully signed in");
-      Navigator.push(context, MaterialPageRoute(builder: (context) {
-        return HomePage();
-      }));
+      Navigator.pushNamed(context, '/home');
     } else {
       print("Some error happened");
     }
@@ -229,9 +230,7 @@ class _LoginPageState extends State<LoginPage> {
       // Autentikasi berhasil, pindah ke halaman beranda
       User? user = userCredential.user;
       if (user != null) {
-        Navigator.push(context, MaterialPageRoute(builder: (context) {
-          return HomePage();
-        }));
+        Navigator.pushNamed(context, '/home');
       } else {
         print("User is null after Google sign-in");
       }
