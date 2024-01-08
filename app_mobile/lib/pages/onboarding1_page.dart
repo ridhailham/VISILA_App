@@ -1,5 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:app_mobile/constants.dart';
+import 'package:app_mobile/pages/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
@@ -331,35 +332,49 @@ class PageThreeWidget extends StatelessWidget {
               seconds: 1,
             ),
             child: SizedBox(
-              height: 60,
-              width: MediaQuery.of(context).size.width * 0.64,
-              child: ElevatedButton(
-                
-                style: ElevatedButton.styleFrom(
-                  
-                  shape: const StadiumBorder(),
-                  backgroundColor: Colors.white,
-                  elevation: 0,
-                  side: BorderSide(color: Colors.black)
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text("Selanjutnya", style: TextStyle(fontSize: 27, color: Colors.black),),
-                    // SizedBox(width: 5,),
-                    Icon(
-                      
-                      Icons.keyboard_double_arrow_right,
-                      color: Colors.black,
-                      size: 45,
-                    )
-                  ],
-                ),
-                onPressed: () { 
-                  Navigator.pushNamed(context, '/login');
-                },
-              ),
-            ),
+  height: 60,
+  width: MediaQuery.of(context).size.width * 0.64,
+  child: ElevatedButton(
+    style: ElevatedButton.styleFrom(
+      shape: const StadiumBorder(),
+      backgroundColor: Colors.white,
+      elevation: 0,
+      side: BorderSide(color: Colors.black),
+    ),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text("Selanjutnya", style: TextStyle(fontSize: 27, color: Colors.black)),
+        Icon(
+          Icons.keyboard_double_arrow_right,
+          color: Colors.black,
+          size: 45,
+        )
+      ],
+    ),
+    onPressed: () {
+      Navigator.push(
+        context,
+        PageRouteBuilder(
+          pageBuilder: (context, animation, secondaryAnimation) => LoginPage(),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            const begin = Offset(1.0, 0.0);
+            const end = Offset.zero;
+            const curve = Curves.easeInOut;
+            
+
+            var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+            var offsetAnimation = animation.drive(tween);
+
+            return SlideTransition(position: offsetAnimation, child: child);
+          },
+          transitionDuration: Duration(milliseconds: 700),
+        ),
+      );
+    },
+  ),
+),
+
           ),
           
         ],

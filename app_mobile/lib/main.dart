@@ -1,4 +1,4 @@
-import 'package:app_mobile/constants.dart';
+
 import 'package:app_mobile/pages/home_page.dart';
 import 'package:app_mobile/pages/login_page.dart';
 import 'package:app_mobile/pages/onboarding1_page.dart';
@@ -7,10 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
-import 'package:animate_do/animate_do.dart';
-import 'package:app_mobile/constants.dart';
-import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
