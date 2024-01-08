@@ -54,10 +54,10 @@ class _LoginPageState extends State<LoginPage> {
               Text((_user?.email ?? "")),
               Text("WELCOME",
                   style: TextStyle(
-                      fontSize: 30,
+                      fontSize: 40,
                       fontWeight: FontWeight.bold,
                       color: Colors.blue[400])),
-              Text("Sign in to continue", style: TextStyle(fontSize: 18)),
+              Text("Sign in to continue", style: TextStyle(fontSize: 21)),
               SizedBox(height: 10),
               SizedBox(height: 30),
               Column(
@@ -76,7 +76,7 @@ class _LoginPageState extends State<LoginPage> {
                       decoration: InputDecoration(
                         hintText: "Email",
                         hintStyle: TextStyle(
-                          fontSize: 15,
+                          fontSize: 20,
                           color: Colors.grey[600],
                         ),
                         contentPadding:
@@ -100,7 +100,7 @@ class _LoginPageState extends State<LoginPage> {
                       decoration: InputDecoration(
                         hintText: "Password",
                         hintStyle: TextStyle(
-                          fontSize: 15,
+                          fontSize: 20,
                           color: Colors.grey[600],
                         ),
                         contentPadding:
@@ -132,7 +132,7 @@ class _LoginPageState extends State<LoginPage> {
                   Text("Forgot Password ?",
                       textAlign: TextAlign.right,
                       style: TextStyle(
-                          fontSize: 13,
+                          fontSize: 16,
                           fontWeight: FontWeight.bold,
                           color: Colors.blue))
                 ],
@@ -151,7 +151,7 @@ class _LoginPageState extends State<LoginPage> {
                   child: Text(
                     "Login",
                     style: TextStyle(
-                        fontSize: 17,
+                        fontSize: 19,
                         color: Colors.blue,
                         fontWeight: FontWeight.bold),
                   ),
@@ -162,7 +162,7 @@ class _LoginPageState extends State<LoginPage> {
                 style: TextStyle(color: Colors.grey[700]),
               ),
               Container(
-                height: 40,
+                height: 45,
                 width: double.infinity,
                 margin: EdgeInsets.symmetric(vertical: 13),
                 child: ElevatedButton(
@@ -173,7 +173,7 @@ class _LoginPageState extends State<LoginPage> {
                   onPressed: _handleGoogleSignIn,
                   child: Text(
                     "Sign in with Google",
-                    style: TextStyle(color: Colors.white, fontSize: 15),
+                    style: TextStyle(color: Colors.white, fontSize: 18),
                   ),
                 ),
               ),
