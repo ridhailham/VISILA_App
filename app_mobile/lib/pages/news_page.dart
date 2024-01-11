@@ -97,103 +97,103 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
-            Expanded(
-              child: GridView.count(
-                crossAxisCount: 2,
-                padding: EdgeInsets.only(top: 55, bottom: 20),
-                // Adjust this value to make the cards longer vertically
-                children: <Widget>[
-                  Expanded(
-                    child: Card(
-                      margin: const EdgeInsets.all(8),
-                      child: InkWell(
-                        onTap: () {},
-                        splashColor: Colors.blue,
-                        child: Center(
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: <Widget>[
-                              Image.asset(
-                                'animations/homepagetrompet.png',
-                                height: 120,
-                                fit: BoxFit.cover,
-                              ),
-                              Text("VISILA Cam", style: TextStyle(fontSize: 20, color: Colors.blue[800], fontWeight: bold)),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: Card(
-                      margin: const EdgeInsets.all(8),
-                      child: InkWell(
-                        onTap: () {},
-                        splashColor: Colors.blue,
-                        child: Center(
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: <Widget>[
-                              Image.asset(
-                                'animations/homepageread.png',
-                                height: 120,
-                                fit: BoxFit.cover,
-                              ),
-                              Text("VISILA Read", style: TextStyle(fontSize: 20, color: Colors.blue[800], fontWeight: bold)),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: Card(
-                      margin: const EdgeInsets.all(8),
-                      child: InkWell(
-                        onTap: () {},
-                        splashColor: Colors.blue,
-                        child: Center(
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: <Widget>[
-                              Image.asset(
-                                'animations/homepagelisten.png',
-                                height: 120,
-                                fit: BoxFit.cover,
-                              ),
-                              Text("VISILA Listen", style: TextStyle(fontSize: 20, color: Colors.blue[800], fontWeight: bold)),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                 Expanded(
-                    child: Card(
-                      margin: const EdgeInsets.all(8),
-                      child: InkWell(
-                        onTap: () {},
-                        splashColor: Colors.blue,
-                        child: Center(
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: <Widget>[
-                              Image.asset(
-                                'animations/homepagenews.png',
-                                height: 120,
-                                fit: BoxFit.cover,
-                              ),
-                              Text("VISILA News", style: TextStyle(fontSize: 20, color: Colors.blue[800], fontWeight: bold)),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            // Expanded(
+            //   child: GridView.count(
+            //     crossAxisCount: 2,
+            //     padding: EdgeInsets.only(top: 55, bottom: 20),
+            //     // Adjust this value to make the cards longer vertically
+            //     children: <Widget>[
+            //       Expanded(
+            //         child: Card(
+            //           margin: const EdgeInsets.all(8),
+            //           child: InkWell(
+            //             onTap: () {},
+            //             splashColor: Colors.blue,
+            //             child: Center(
+            //               child: Column(
+            //                 mainAxisSize: MainAxisSize.min,
+            //                 children: <Widget>[
+            //                   Image.asset(
+            //                     'animations/homepagetrompet.png',
+            //                     height: 120,
+            //                     fit: BoxFit.cover,
+            //                   ),
+            //                   Text("VISILA Cam", style: TextStyle(fontSize: 20, color: Colors.blue[800], fontWeight: bold)),
+            //                 ],
+            //               ),
+            //             ),
+            //           ),
+            //         ),
+            //       ),
+            //       Expanded(
+            //         child: Card(
+            //           margin: const EdgeInsets.all(8),
+            //           child: InkWell(
+            //             onTap: () {},
+            //             splashColor: Colors.blue,
+            //             child: Center(
+            //               child: Column(
+            //                 mainAxisSize: MainAxisSize.min,
+            //                 children: <Widget>[
+            //                   Image.asset(
+            //                     'animations/homepageread.png',
+            //                     height: 120,
+            //                     fit: BoxFit.cover,
+            //                   ),
+            //                   Text("VISILA Read", style: TextStyle(fontSize: 20, color: Colors.blue[800], fontWeight: bold)),
+            //                 ],
+            //               ),
+            //             ),
+            //           ),
+            //         ),
+            //       ),
+            //       Expanded(
+            //         child: Card(
+            //           margin: const EdgeInsets.all(8),
+            //           child: InkWell(
+            //             onTap: () {},
+            //             splashColor: Colors.blue,
+            //             child: Center(
+            //               child: Column(
+            //                 mainAxisSize: MainAxisSize.min,
+            //                 children: <Widget>[
+            //                   Image.asset(
+            //                     'animations/homepagelisten.png',
+            //                     height: 120,
+            //                     fit: BoxFit.cover,
+            //                   ),
+            //                   Text("VISILA Listen", style: TextStyle(fontSize: 20, color: Colors.blue[800], fontWeight: bold)),
+            //                 ],
+            //               ),
+            //             ),
+            //           ),
+            //         ),
+            //       ),
+            //      Expanded(
+            //         child: Card(
+            //           margin: const EdgeInsets.all(8),
+            //           child: InkWell(
+            //             onTap: () {},
+            //             splashColor: Colors.blue,
+            //             child: Center(
+            //               child: Column(
+            //                 mainAxisSize: MainAxisSize.min,
+            //                 children: <Widget>[
+            //                   Image.asset(
+            //                     'animations/homepagenews.png',
+            //                     height: 120,
+            //                     fit: BoxFit.cover,
+            //                   ),
+            //                   Text("VISILA News", style: TextStyle(fontSize: 20, color: Colors.blue[800], fontWeight: bold)),
+            //                 ],
+            //               ),
+            //             ),
+            //           ),
+            //         ),
+            //       ),
+            //     ],
+            //   ),
+            // ),
           ],
         ),
       ),

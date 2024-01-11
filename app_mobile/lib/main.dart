@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
         //   title: Text("Welcome.", textAlign: TextAlign.end, style: TextStyle(fontSize: 30, fontWeight: bold)),
 
         // )
-        body: const SpeechPage(),
+        body: const HomePage(),
       ),
       routes: <String, WidgetBuilder>{
         '/login': (BuildContext context) => LoginPage(),
