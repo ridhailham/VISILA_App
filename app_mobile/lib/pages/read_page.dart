@@ -3,23 +3,31 @@ import 'package:app_mobile/user_auth/firebase_auth_implementation/firebase_auth_
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:speech_to_text/speech_to_text.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+class ReadPage extends StatefulWidget {
+  const ReadPage({Key? key}) : super(key: key);
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<ReadPage> createState() => _ListenPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _ListenPageState extends State<ReadPage> {
   final FirebaseAuthService _auth = FirebaseAuthService();
   final FirebaseAuth _authGoogle = FirebaseAuth.instance;
+
+  final SpeechToText _speechToText = SpeechToText();
+
+  bool _speechEnable = false;
+  String _wordSpoken = "";
+  double _confidenceLevel = 0;
 
   User? _user;
 
   @override
   void initState() {
     super.initState();
+    initSpeech();
     _authGoogle.authStateChanges().listen((event) {
       setState(() {
         _user = event;
@@ -27,68 +35,121 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  void initSpeech() async {
+    _speechEnable = await _speechToText.initialize();
+    setState(() {});
+  }
+
+  void _startListening() async {
+    await _speechToText.listen(onResult: _onSpeechResult);
+    setState(() {
+      _confidenceLevel = 0;
+    });
+  }
+
+  void _stopListening() async {
+    await _speechToText.stop();
+    setState(() {});
+  }
+
+  void _onSpeechResult(result) {
+    setState(() {
+      _wordSpoken = "${result.recognizedWords}";
+      _confidenceLevel = result.confidence;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: [
-            
-            
-            
-                    Container(
+      backgroundColor: Colors.grey[300],
+      appBar: AppBar(
+        backgroundColor: Colors.blue[800],
+        centerTitle: true,
+        
+        // backgroundColor: Colors.blue[800],
+        iconTheme: IconThemeData(color: Colors.white),
+        
+        title: Text(
+          "VISILA read",
+          style: TextStyle(                     
+            color: Colors.white,                      
+            fontSize: 26,                        
+            fontWeight: FontWeight.bold, 
                       
-                      padding: EdgeInsets.only(top: 25, bottom: 20),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(20),
-                          bottomRight: Radius.circular(20),
-                        ),
-                        color: Colors.blue[800],
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 25),
-                        child: Column(
-                          
-                          children: [
-                            
-                    
+
+          ),
+        // actions: [
+        //   Padding(
+        //     padding: const EdgeInsets.all(8),
+        //     child: InkWell(
+        //       onTap: () {
+        //         Navigator.pop(context);
+        //       },
+        //     ),
+        //   ),
+        // ],
+        ),
+      ),
+
+      body: SafeArea(
+        
+        child: Column(
+          
+          children: [
+            Container(
+              padding: EdgeInsets.only( bottom: 25),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(20),
+                  bottomRight: Radius.circular(20),
+                ),
+                color: Colors.blue[800],
+              ),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25),
+                child: Column(
+                  children: [
                     Row(
                       children: [
-                        
+                        Column(
+                          children: [
+                            Image.asset(
+                              'animations/listen.png',
+                              height: 80,
+                              fit: BoxFit.cover,
+                            ),
+                          ],
+                        ),
+                        SizedBox(width: 15),
                         Expanded(
                           child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Row(
-                                children: [
-                                  Text(
-                                    "Selamat Datang,",
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 20,
-                                    ),
-                                  ),
-                                ],
-                              ),
+                              
                               Text(
-                                (_user?.displayName ?? ""),
+                                "Untuk ubah suaramu jadi tulisan",
                                 style: TextStyle(
                                   color: Colors.white,
-                                  fontSize: 25,
-                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
                                 ),
                               ),
                             ],
                           ),
                         ),
-                        SizedBox(width: 30),
+                        SizedBox(width: 10),
                         Column(
                           children: [
-                            Image.asset(
-                              'animations/homepageAtas.png',
-                              height: 150,
-                              fit: BoxFit.cover,
+                            Icon(
+                              Icons.help_outline,
+                              color: Colors.yellow[700],
+                              size: 40,
                             ),
+                            Text(
+                              'Bantuan',
+                              style: TextStyle(color: Colors.white, fontSize: 16),
+                            )
+                            
                           ],
                         ),
                       ],
@@ -194,26 +255,73 @@ class _HomePageState extends State<HomePage> {
             //     ],
             //   ),
             // ),
+            SizedBox(height: 20,),
+            Text("Teks", style: TextStyle(fontSize: 24, color: Colors.blue[800], fontWeight: bold)),
+            
+            Spacer(),
+            
+            
+            Expanded(
+              child: Container(
+                padding: EdgeInsets.all(16),
+                child: Text(
+                  _wordSpoken,
+                  style: const TextStyle(
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold
+                    // fontWeight: FontWeight.w300  
+                  ),
+                )
+              )
+            ),
+
+            // if (_speechToText.isNotListening && _confidenceLevel > 0) 
+            // Padding(
+            //   padding: const EdgeInsets.only(
+            //     bottom: 100,
+            //   ),
+            //   child: Text(
+            //       "Confidence: ${(_confidenceLevel * 100).toStringAsFixed(1)}%",
+            //       style: TextStyle(
+            //         fontSize: 30,
+            //         fontWeight: FontWeight.w200
+            //       ),
+            //     ),
+            // ),
+
+            Container(
+              margin: EdgeInsets.only(bottom: 30),
+              padding: EdgeInsets.all(16),
+              child: Text(
+                _speechToText.isListening 
+                  ? "Mendengarkan..." : _speechEnable 
+                  ? "Apa yang akan kamu katakan?" : "",
+                  style: TextStyle(color: Colors.blue[800], fontSize: 20.0, fontWeight: bold),
+              ),
+            ),
+            
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.home, color: Colors.white),
-        onPressed: () {},
+        // child: Icon(Icons.home, color: Colors.white),
+        onPressed: _speechToText.isListening ? _stopListening : _startListening,
+        child: Icon(
+          _speechToText.isNotListening ? Icons.mic_off : Icons.mic,
+          color: Colors.white,
+        ),
+        // onPressed: () {},
         backgroundColor: Colors.yellow[700],
         shape: CircleBorder(),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(
-        
         color: Colors.blue[800],
         shape: CircularNotchedRectangle(),
-        
         notchMargin: 10,
         child: Container(
           height: 60,
           child: Row(
-            
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
