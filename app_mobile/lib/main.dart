@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
         //   title: Text("Welcome.", textAlign: TextAlign.end, style: TextStyle(fontSize: 30, fontWeight: bold)),
 
         // )
-        body: const ReadPage(),
+        body: const LoginPage(),
       ),
       routes: <String, WidgetBuilder>{
         '/login': (BuildContext context) => LoginPage(),
@@ -42,6 +42,7 @@ class MyApp extends StatelessWidget {
         '/home': (BuildContext context) => HomePage(),
         '/listen':(BuildContext context) => ListenPage(),
         '/read':(BuildContext context) => ReadPage(),
+        '/camera' : (BuildContext context) => CameraPage()
       },
     );
   }

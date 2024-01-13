@@ -101,7 +101,9 @@ class _HomePageState extends State<HomePage> {
                       child: Card(
                         margin: const EdgeInsets.all(8),
                         child: InkWell(
-                          onTap: () {},
+                          onTap: () {
+                             Navigator.pushNamed(context, '/camera');
+                          },
                           splashColor: Colors.blue,
                           child: Center(
                             child: Column(
@@ -130,7 +132,9 @@ class _HomePageState extends State<HomePage> {
                       child: Card(
                         margin: const EdgeInsets.all(8),
                         child: InkWell(
-                          onTap: () {},
+                          onTap: () {
+                             Navigator.pushNamed(context, '/read');
+                          },
                           splashColor: Colors.blue,
                           child: Center(
                             child: Column(
