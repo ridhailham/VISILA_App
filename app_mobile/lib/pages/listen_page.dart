@@ -35,7 +35,9 @@ class _ListenPageState extends State<ListenPage> {
         _voices = List<Map>.from(data);
 
         setState(() {
-          _voices = _voices.where((_voice) => _voice["locale"] == "id-ID").toList(); // Filter for Indonesian locale
+          _voices = _voices
+              .where((_voice) => _voice["locale"] == "id-ID")
+              .toList(); // Filter for Indonesian locale
           _currentVoice = _voices.first;
           setVoice(_currentVoice!);
         });
@@ -55,11 +57,68 @@ class _ListenPageState extends State<ListenPage> {
       body: _buildUI(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.blue[800],
+        shape: CircleBorder(),
+        backgroundColor: Colors.yellow[700],
         onPressed: () {
           _flutterTts.speak(_textEditingController.text);
         },
-        child: const Icon(Icons.speaker_phone, color: Colors.white,),
+        child: const Icon(
+          Icons.speaker_phone,
+          color: Colors.white,
+        ),
+      ),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      bottomNavigationBar: BottomAppBar(
+        color: Colors.blue[800],
+        shape: CircularNotchedRectangle(),
+        notchMargin: 10,
+        child: Container(
+          height: 60,
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              MaterialButton(
+                padding: EdgeInsets.only(left: 50),
+                minWidth: 40,
+                onPressed: () {},
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.help_outline,
+                      color: Colors.yellow[700],
+                      size: 32,
+                    ),
+                    Text(
+                      'Bantuan',
+                      style: TextStyle(color: Colors.white, fontSize: 15),
+                    )
+                  ],
+                ),
+              ),
+              MaterialButton(
+                minWidth: 40,
+                padding: EdgeInsets.only(right: 50),
+                onPressed: () {},
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.account_circle,
+                      color: Colors.yellow[700],
+                      size: 32,
+                    ),
+                    Text(
+                      'Profile',
+                      style: TextStyle(color: Colors.white, fontSize: 15),
+                    )
+                  ],
+                ),
+              )
+            ],
+          ),
+        ),
       ),
     );
   }
@@ -138,17 +197,22 @@ class _ListenPageState extends State<ListenPage> {
                 color: Colors.black,
               ),
               children: <TextSpan>[
-                TextSpan(text: _textEditingController.text.substring(0, _currentWordStart)),
+                TextSpan(
+                    text: _textEditingController.text
+                        .substring(0, _currentWordStart)),
                 if (_currentWordStart != null)
                   TextSpan(
-                    text: _textEditingController.text.substring(_currentWordStart!, _currentWordEnd),
+                    text: _textEditingController.text
+                        .substring(_currentWordStart!, _currentWordEnd),
                     style: const TextStyle(
                       color: Colors.white,
                       backgroundColor: Colors.purpleAccent,
                     ),
-                ),
+                  ),
                 if (_currentWordEnd != null)
-                  TextSpan(text: _textEditingController.text.substring(_currentWordEnd!)),
+                  TextSpan(
+                      text: _textEditingController.text
+                          .substring(_currentWordEnd!)),
               ],
             ),
           ),
@@ -172,7 +236,10 @@ class _ListenPageState extends State<ListenPage> {
   Widget _speakerSelector() {
     return DropdownButton(
       value: _currentVoice,
-      items: _voices.map((_voice) => DropdownMenuItem(value: _voice, child: Text(_voice["name"]))).toList(),
+      items: _voices
+          .map((_voice) =>
+              DropdownMenuItem(value: _voice, child: Text(_voice["name"])))
+          .toList(),
       onChanged: (value) {
         setState(() {
           _currentVoice = value;

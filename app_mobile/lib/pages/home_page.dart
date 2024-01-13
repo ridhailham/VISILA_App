@@ -264,7 +264,9 @@ class _HomePageState extends State<HomePage> {
                 MaterialButton(
                   minWidth: 40,
                   padding: EdgeInsets.only(right: 50),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/profile');
+                  },
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -274,7 +276,7 @@ class _HomePageState extends State<HomePage> {
                         size: 32,
                       ),
                       Text(
-                        'Profil',
+                        'Profile',
                         style: TextStyle(color: Colors.white, fontSize: 15),
                       ),
                     ],
