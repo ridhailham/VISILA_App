@@ -34,7 +34,6 @@ class _ListenPageState extends State<ListenPage> {
     _authGoogle.authStateChanges().listen((event) {
       setState(() {
         _user = event;
-        
       });
     });
   }
@@ -274,11 +273,9 @@ class _ListenPageState extends State<ListenPage> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Padding(
-                  
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 20, vertical: 10),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                   child: TextField(
-                    
                     onChanged: (text) {
                       setState(() {
                         _inputText = text;
@@ -293,7 +290,6 @@ class _ListenPageState extends State<ListenPage> {
                   ),
                 ),
                 Container(
-                  
                   child: RichText(
                     textAlign: TextAlign.center,
                     text: TextSpan(

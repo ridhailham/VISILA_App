@@ -35,7 +35,7 @@ class _ListenPageState extends State<ListenPage> {
         _voices = List<Map>.from(data);
 
         setState(() {
-          _voices = _voices.where((_voice) => _voice["name"].contains("id")).toList(); // Filter untuk suara Indonesia
+          _voices = _voices.where((_voice) => _voice["locale"] == "id-ID").toList(); // Filter for Indonesian locale
           _currentVoice = _voices.first;
           setVoice(_currentVoice!);
         });
@@ -53,12 +53,13 @@ class _ListenPageState extends State<ListenPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: _buildUI(),
-      
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.blue[800],
         onPressed: () {
           _flutterTts.speak(_textEditingController.text);
         },
-        child: const Icon(Icons.speaker_phone),
+        child: const Icon(Icons.speaker_phone, color: Colors.white,),
       ),
     );
   }
@@ -66,70 +67,66 @@ class _ListenPageState extends State<ListenPage> {
   Widget _buildUI() {
     return SafeArea(
       child: Column(
-        // mainAxisSize: MainAxisSize.max,
-        // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        // crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
-              padding: EdgeInsets.only(bottom: 25),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(20),
-                  bottomRight: Radius.circular(20),
-                ),
-                color: Colors.blue[800],
+            padding: EdgeInsets.only(bottom: 25),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(20),
+                bottomRight: Radius.circular(20),
               ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25),
-                child: Column(
-                  children: [
-                    Row(
-                      children: [
-                        Column(
-                          children: [
-                            Image.asset(
-                              'animations/listen.png',
-                              height: 80,
-                              fit: BoxFit.cover,
-                            ),
-                          ],
-                        ),
-                        SizedBox(width: 15),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Untuk ubah tulisanmu jadi suara",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 18,
-                                ),
-                              ),
-                            ],
+              color: Colors.blue[800],
+            ),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25),
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      Column(
+                        children: [
+                          Image.asset(
+                            'animations/listen.png',
+                            height: 80,
+                            fit: BoxFit.cover,
                           ),
-                        ),
-                        SizedBox(width: 10),
-                        Column(
+                        ],
+                      ),
+                      SizedBox(width: 15),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Icon(
-                              Icons.help_outline,
-                              color: Colors.yellow[700],
-                              size: 40,
-                            ),
                             Text(
-                              'Bantuan',
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 16),
-                            )
+                              "Untuk ubah tulisanmu jadi suara",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                              ),
+                            ),
                           ],
                         ),
-                      ],
-                    ),
-                  ],
-                ),
+                      ),
+                      SizedBox(width: 10),
+                      Column(
+                        children: [
+                          Icon(
+                            Icons.help_outline,
+                            color: Colors.yellow[700],
+                            size: 40,
+                          ),
+                          Text(
+                            'Bantuan',
+                            style: TextStyle(color: Colors.white, fontSize: 16),
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ),
+          ),
           _textEntryField(),
           // _speakerSelector(),
           RichText(
@@ -155,8 +152,6 @@ class _ListenPageState extends State<ListenPage> {
               ],
             ),
           ),
-          
-          
         ],
       ),
     );
@@ -174,16 +169,217 @@ class _ListenPageState extends State<ListenPage> {
     );
   }
 
-  // Widget _speakerSelector() {
-  //   return DropdownButton(
-  //     value: _currentVoice,
-  //     items: _voices.map((_voice) => DropdownMenuItem(value: _voice, child: Text(_voice["name"]))).toList(),
-  //     onChanged: (value) {
-  //       // Ganti suara yang dipilih
-  //     },
-  //   );
-  // }
+  Widget _speakerSelector() {
+    return DropdownButton(
+      value: _currentVoice,
+      items: _voices.map((_voice) => DropdownMenuItem(value: _voice, child: Text(_voice["name"]))).toList(),
+      onChanged: (value) {
+        setState(() {
+          _currentVoice = value;
+          setVoice(_currentVoice!);
+        });
+      },
+    );
+  }
 }
+
+
+
+
+
+
+
+
+// import 'package:flutter/material.dart';
+// import 'package:flutter_tts/flutter_tts.dart';
+
+// class ListenPage extends StatefulWidget {
+//   const ListenPage({Key? key}) : super(key: key);
+
+//   @override
+//   State<ListenPage> createState() => _ListenPageState();
+// }
+
+// class _ListenPageState extends State<ListenPage> {
+//   FlutterTts _flutterTts = FlutterTts();
+
+//   List<Map> _voices = [];
+//   Map? _currentVoice;
+
+//   int? _currentWordStart, _currentWordEnd;
+//   TextEditingController _textEditingController = TextEditingController();
+
+//   @override
+//   void initState() {
+//     super.initState();
+//     initTTS();
+//   }
+
+//   void initTTS() {
+//     _flutterTts.setProgressHandler((text, start, end, word) {
+//       setState(() {
+//         _currentWordStart = start;
+//         _currentWordEnd = end;
+//       });
+//     });
+//     _flutterTts.getVoices.then((data) {
+//       try {
+//         _voices = List<Map>.from(data);
+
+//         setState(() {
+//           _voices = _voices.where((_voice) => _voice["name"].contains("id")).toList(); // Filter untuk suara Indonesia
+//           _currentVoice = _voices.first;
+//           setVoice(_currentVoice!);
+//         });
+//       } catch (e) {
+//         print(e);
+//       }
+//     });
+//   }
+
+//   void setVoice(Map voice) {
+//     _flutterTts.setVoice({"name": voice["name"], "locale": voice["locale"]});
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       body: _buildUI(),
+//       floatingActionButton: FloatingActionButton(
+//         onPressed: () {
+//           _flutterTts.speak(_textEditingController.text);
+//         },
+//         child: const Icon(Icons.speaker_phone),
+//       ),
+//     );
+//   }
+
+//   Widget _buildUI() {
+//     return SafeArea(
+//       child: Column(
+//         children: [
+//           Container(
+//             padding: EdgeInsets.only(bottom: 25),
+//             decoration: BoxDecoration(
+//               borderRadius: BorderRadius.only(
+//                 bottomLeft: Radius.circular(20),
+//                 bottomRight: Radius.circular(20),
+//               ),
+//               color: Colors.blue[800],
+//             ),
+//             child: Padding(
+//               padding: const EdgeInsets.symmetric(horizontal: 25),
+//               child: Column(
+//                 children: [
+//                   Row(
+//                     children: [
+//                       Column(
+//                         children: [
+//                           Image.asset(
+//                             'animations/listen.png',
+//                             height: 80,
+//                             fit: BoxFit.cover,
+//                           ),
+//                         ],
+//                       ),
+//                       SizedBox(width: 15),
+//                       Expanded(
+//                         child: Column(
+//                           crossAxisAlignment: CrossAxisAlignment.start,
+//                           children: [
+//                             Text(
+//                               "Untuk ubah tulisanmu jadi suara",
+//                               style: TextStyle(
+//                                 color: Colors.white,
+//                                 fontSize: 18,
+//                               ),
+//                             ),
+//                           ],
+//                         ),
+//                       ),
+//                       SizedBox(width: 10),
+//                       Column(
+//                         children: [
+//                           Icon(
+//                             Icons.help_outline,
+//                             color: Colors.yellow[700],
+//                             size: 40,
+//                           ),
+//                           Text(
+//                             'Bantuan',
+//                             style: TextStyle(color: Colors.white, fontSize: 16),
+//                           )
+//                         ],
+//                       ),
+//                     ],
+//                   ),
+//                 ],
+//               ),
+//             ),
+//           ),
+//           _textEntryField(),
+//           _speakerSelector(),
+//           RichText(
+//             textAlign: TextAlign.center,
+//             text: TextSpan(
+//               style: TextStyle(
+//                 fontWeight: FontWeight.w300,
+//                 fontSize: 20,
+//                 color: Colors.black,
+//               ),
+//               children: <TextSpan>[
+//                 TextSpan(text: _textEditingController.text.substring(0, _currentWordStart)),
+//                 if (_currentWordStart != null)
+//                   TextSpan(
+//                     text: _textEditingController.text.substring(_currentWordStart!, _currentWordEnd),
+//                     style: const TextStyle(
+//                       color: Colors.white,
+//                       backgroundColor: Colors.purpleAccent,
+//                     ),
+//                 ),
+//                 if (_currentWordEnd != null)
+//                   TextSpan(text: _textEditingController.text.substring(_currentWordEnd!)),
+//               ],
+//             ),
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+
+//   Widget _textEntryField() {
+//     return Padding(
+//       padding: const EdgeInsets.symmetric(horizontal: 16),
+//       child: TextField(
+//         controller: _textEditingController,
+//         decoration: InputDecoration(
+//           hintText: 'Enter text here',
+//         ),
+//       ),
+//     );
+//   }
+
+//   Widget _speakerSelector() {
+//     return DropdownButton(
+//       value: _currentVoice,
+//       items: _voices.map((_voice) => DropdownMenuItem(value: _voice, child: Text(_voice["name"]))).toList(),
+//       onChanged: (value) {
+//         setState(() {
+//           _currentVoice = value;
+//           setVoice(_currentVoice!);
+//         });
+//       },
+//     );
+//   }
+// }
+
+
+
+
+
+
+
+
 
 
 
