@@ -30,65 +30,88 @@ class _HomePageState extends State<CameraPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.blue[800],
+        centerTitle: true,
+
+        // backgroundColor: Colors.blue[800],
+        iconTheme: IconThemeData(color: Colors.white),
+
+        title: Text(
+          "VISILA cam",
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+          ),
+          // actions: [
+          //   Padding(
+          //     padding: const EdgeInsets.all(8),
+          //     child: InkWell(
+          //       onTap: () {
+          //         Navigator.pop(context);
+          //       },
+          //     ),
+          //   ),
+          // ],
+        ),
+      ),
       body: SafeArea(
         child: Column(
           children: [
             
-            
-            
-                    Container(
-                      
-                      padding: EdgeInsets.only(top: 25, bottom: 20),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(20),
-                          bottomRight: Radius.circular(20),
-                        ),
-                        color: Colors.blue[800],
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 25),
-                        child: Column(
-                          
-                          children: [
-                            
-                    
+            Container(
+              padding: EdgeInsets.only(bottom: 25),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(20),
+                  bottomRight: Radius.circular(20),
+                ),
+                color: Colors.blue[800],
+              ),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25),
+                child: Column(
+                  children: [
                     Row(
                       children: [
-                        
+                        Column(
+                          children: [
+                            Image.asset(
+                              'animations/cam.png',
+                              height: 80,
+                              fit: BoxFit.cover,
+                            ),
+                          ],
+                        ),
+                        SizedBox(width: 15),
                         Expanded(
                           child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Row(
-                                children: [
-                                  Text(
-                                    "Selamat Datang,",
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 20,
-                                    ),
-                                  ),
-                                ],
-                              ),
                               Text(
-                                (_user?.displayName ?? ""),
+                                "Untuk terjemah bahasa isyaratmu",
                                 style: TextStyle(
                                   color: Colors.white,
-                                  fontSize: 25,
-                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
                                 ),
                               ),
                             ],
                           ),
                         ),
-                        SizedBox(width: 30),
+                        SizedBox(width: 10),
                         Column(
                           children: [
-                            Image.asset(
-                              'animations/homepageAtas.png',
-                              height: 150,
-                              fit: BoxFit.cover,
+                            Icon(
+                              Icons.help_outline,
+                              color: Colors.yellow[700],
+                              size: 40,
                             ),
+                            Text(
+                              'Bantuan',
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 15),
+                            )
                           ],
                         ),
                       ],
@@ -97,103 +120,13 @@ class _HomePageState extends State<CameraPage> {
                 ),
               ),
             ),
-            // Expanded(
-            //   child: GridView.count(
-            //     crossAxisCount: 2,
-            //     padding: EdgeInsets.only(top: 55, bottom: 20),
-            //     // Adjust this value to make the cards longer vertically
-            //     children: <Widget>[
-            //       Expanded(
-            //         child: Card(
-            //           margin: const EdgeInsets.all(8),
-            //           child: InkWell(
-            //             onTap: () {},
-            //             splashColor: Colors.blue,
-            //             child: Center(
-            //               child: Column(
-            //                 mainAxisSize: MainAxisSize.min,
-            //                 children: <Widget>[
-            //                   Image.asset(
-            //                     'animations/homepagetrompet.png',
-            //                     height: 120,
-            //                     fit: BoxFit.cover,
-            //                   ),
-            //                   Text("VISILA Cam", style: TextStyle(fontSize: 20, color: Colors.blue[800], fontWeight: bold)),
-            //                 ],
-            //               ),
-            //             ),
-            //           ),
-            //         ),
-            //       ),
-            //       Expanded(
-            //         child: Card(
-            //           margin: const EdgeInsets.all(8),
-            //           child: InkWell(
-            //             onTap: () {},
-            //             splashColor: Colors.blue,
-            //             child: Center(
-            //               child: Column(
-            //                 mainAxisSize: MainAxisSize.min,
-            //                 children: <Widget>[
-            //                   Image.asset(
-            //                     'animations/homepageread.png',
-            //                     height: 120,
-            //                     fit: BoxFit.cover,
-            //                   ),
-            //                   Text("VISILA Read", style: TextStyle(fontSize: 20, color: Colors.blue[800], fontWeight: bold)),
-            //                 ],
-            //               ),
-            //             ),
-            //           ),
-            //         ),
-            //       ),
-            //       Expanded(
-            //         child: Card(
-            //           margin: const EdgeInsets.all(8),
-            //           child: InkWell(
-            //             onTap: () {},
-            //             splashColor: Colors.blue,
-            //             child: Center(
-            //               child: Column(
-            //                 mainAxisSize: MainAxisSize.min,
-            //                 children: <Widget>[
-            //                   Image.asset(
-            //                     'animations/homepagelisten.png',
-            //                     height: 120,
-            //                     fit: BoxFit.cover,
-            //                   ),
-            //                   Text("VISILA Listen", style: TextStyle(fontSize: 20, color: Colors.blue[800], fontWeight: bold)),
-            //                 ],
-            //               ),
-            //             ),
-            //           ),
-            //         ),
-            //       ),
-            //      Expanded(
-            //         child: Card(
-            //           margin: const EdgeInsets.all(8),
-            //           child: InkWell(
-            //             onTap: () {},
-            //             splashColor: Colors.blue,
-            //             child: Center(
-            //               child: Column(
-            //                 mainAxisSize: MainAxisSize.min,
-            //                 children: <Widget>[
-            //                   Image.asset(
-            //                     'animations/homepagenews.png',
-            //                     height: 120,
-            //                     fit: BoxFit.cover,
-            //                   ),
-            //                   Text("VISILA News", style: TextStyle(fontSize: 20, color: Colors.blue[800], fontWeight: bold)),
-            //                 ],
-            //               ),
-            //             ),
-            //           ),
-            //         ),
-            //       ),
-            //     ],
-            //   ),
-            // ),
+
+            // ISI MACHINE LEARNING BAGIAN SINI
+            // ISI MACHINE LEARNING BAGIAN SINI
+            // ISI MACHINE LEARNING BAGIAN SINI
+            // ISI MACHINE LEARNING BAGIAN SINI
+            
+            
           ],
         ),
       ),

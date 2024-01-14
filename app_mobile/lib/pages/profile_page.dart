@@ -64,7 +64,33 @@ class _ListenPageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[300],
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.blue[800],
+        centerTitle: true,
+
+        // backgroundColor: Colors.blue[800],
+        iconTheme: IconThemeData(color: Colors.white),
+
+        title: Text(
+          "Halaman Profile",
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 27,
+            fontWeight: FontWeight.bold,
+          ),
+          // actions: [
+          //   Padding(
+          //     padding: const EdgeInsets.all(8),
+          //     child: InkWell(
+          //       onTap: () {
+          //         Navigator.pop(context);
+          //       },
+          //     ),
+          //   ),
+          // ],
+        ),
+      ),
       // appBar: AppBar(
       //   backgroundColor: Colors.blue[800],
       //   centerTitle: true,
@@ -95,7 +121,7 @@ class _ListenPageState extends State<ProfilePage> {
         child: Column(
           children: [
             Container(
-              padding: EdgeInsets.only(bottom: 25, top: 25),
+              // padding: EdgeInsets.only(bottom: 25, top: 25),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(20),
@@ -104,28 +130,28 @@ class _ListenPageState extends State<ProfilePage> {
                 color: Colors.blue[800],
               ),
               child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
+                padding: const EdgeInsets.only(
+                    right: 25, left: 25, top: 5, bottom: 50),
                 child: Column(
                   children: [
-                    Text(
-                      "Halaman Profile",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 32,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      // actions: [
-                      //   Padding(
-                      //     padding: const EdgeInsets.all(8),
-                      //     child: InkWell(
-                      //       onTap: () {
-                      //         Navigator.pop(context);
-                      //       },
-                      //     ),
-                      //   ),
-                      // ],
-                    ),
+                    // Text(
+                    //   "Halaman Profile",
+                    //   style: TextStyle(
+                    //     color: Colors.white,
+                    //     fontSize: 32,
+                    //     fontWeight: FontWeight.bold,
+                    //   ),
+                    //   // actions: [
+                    //   //   Padding(
+                    //   //     padding: const EdgeInsets.all(8),
+                    //   //     child: InkWell(
+                    //   //       onTap: () {
+                    //   //         Navigator.pop(context);
+                    //   //       },
+                    //   //     ),
+                    //   //   ),
+                    //   // ],
+                    // ),
                     SizedBox(
                       height: 20,
                     ),
@@ -251,17 +277,18 @@ class _ListenPageState extends State<ProfilePage> {
                 children: [
                   Row(
                     children: [
-                      Text("Email",
+                      Text("Nama",
                           style: TextStyle(
                               fontSize: 30,
                               color: Colors.yellow[800],
                               fontWeight: bold,
-                              height: 3)),
+                              height: 2)),
                     ],
                   ),
                   Text(
-                    (_user?.email ?? ""),
-                    style: TextStyle(color: Colors.blue[800], fontSize: 25),
+                    _user?.email?.split('@').first ?? "",
+                    style: TextStyle(color: Colors.blue[800], fontSize: 25, height: 2),
+                    
                   ),
                 ],
               ),
@@ -272,20 +299,31 @@ class _ListenPageState extends State<ProfilePage> {
                 margin: EdgeInsets.only(top: 10, left: 20, right: 20),
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.white,
-                    side: BorderSide(color: Colors.white),
-                    backgroundColor: Colors.red[400]
-                  ),
+                      primary: Colors.white,
+                      side: BorderSide(color: Colors.white),
+                      backgroundColor: Colors.red[500]),
                   onPressed: () {
                     FirebaseAuth.instance.signOut();
                     Navigator.pop(context);
                   },
-                  child: Text(
-                    "Logout",
-                    style: TextStyle(
-                        fontSize: 20,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Logout",
+                        style: TextStyle(
+                          fontSize: 20,
+                          color: Colors.white,
+                          // fontWeight: FontWeight.bold
+                        ),
+                      ),
+                      SizedBox(width: 10),
+                      Icon(
+                        Icons.logout,
                         color: Colors.white,
-                        fontWeight: FontWeight.bold),
+                      )
+                    ],
                   ),
                 )),
           ],

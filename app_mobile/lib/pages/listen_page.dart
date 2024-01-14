@@ -1,3 +1,4 @@
+import 'package:app_mobile/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 
@@ -54,6 +55,34 @@ class _ListenPageState extends State<ListenPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[200],
+      appBar: AppBar(
+        backgroundColor: Colors.blue[800],
+        centerTitle: true,
+        
+
+        // backgroundColor: Colors.blue[800],
+        iconTheme: IconThemeData(color: Colors.white),
+
+        title: Text(
+          "VISILA listen",
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+          ),
+          // actions: [
+          //   Padding(
+          //     padding: const EdgeInsets.all(8),
+          //     child: InkWell(
+          //       onTap: () {
+          //         Navigator.pop(context);
+          //       },
+          //     ),
+          //   ),
+          // ],
+        ),
+      ),
       body: _buildUI(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
@@ -100,7 +129,9 @@ class _ListenPageState extends State<ListenPage> {
               MaterialButton(
                 minWidth: 40,
                 padding: EdgeInsets.only(right: 50),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, '/profile');
+                },
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -146,7 +177,7 @@ class _ListenPageState extends State<ListenPage> {
                         children: [
                           Image.asset(
                             'animations/listen.png',
-                            height: 80,
+                            height: 76,
                             fit: BoxFit.cover,
                           ),
                         ],
@@ -176,7 +207,7 @@ class _ListenPageState extends State<ListenPage> {
                           ),
                           Text(
                             'Bantuan',
-                            style: TextStyle(color: Colors.white, fontSize: 16),
+                            style: TextStyle(color: Colors.white, fontSize: 15),
                           )
                         ],
                       ),
@@ -186,52 +217,106 @@ class _ListenPageState extends State<ListenPage> {
               ),
             ),
           ),
-          _textEntryField(),
-          // _speakerSelector(),
-          RichText(
-            textAlign: TextAlign.center,
-            text: TextSpan(
+          SizedBox(
+            height: 20,
+          ),
+          Text("Teks",
               style: TextStyle(
-                fontWeight: FontWeight.w300,
-                fontSize: 20,
-                color: Colors.black,
-              ),
-              children: <TextSpan>[
-                TextSpan(
-                    text: _textEditingController.text
-                        .substring(0, _currentWordStart)),
-                if (_currentWordStart != null)
-                  TextSpan(
-                    text: _textEditingController.text
-                        .substring(_currentWordStart!, _currentWordEnd),
-                    style: const TextStyle(
-                      color: Colors.white,
-                      backgroundColor: Colors.purpleAccent,
-                    ),
+                  fontSize: 21, color: Colors.blue[800], fontWeight: bold)),
+          
+          _textEntryField(),
+
+
+          // _speakerSelector(),
+
+          // RichText(
+          //   textAlign: TextAlign.center,
+          //   text: TextSpan(
+          //     style: TextStyle(
+          //       fontWeight: FontWeight.w300,
+          //       fontSize: 20,
+          //       color: Colors.black,
+          //     ),
+          //     children: <TextSpan>[
+          //       TextSpan(
+          //           text: _textEditingController.text
+          //               .substring(0, _currentWordStart)),
+          //       if (_currentWordStart != null)
+          //         TextSpan(
+          //           text: _textEditingController.text
+          //               .substring(_currentWordStart!, _currentWordEnd),
+          //           style: const TextStyle(
+          //             color: Colors.white,
+          //             backgroundColor: Colors.purpleAccent,
+          //           ),
+          //         ),
+          //       if (_currentWordEnd != null)
+          //         TextSpan(
+          //             text: _textEditingController.text
+          //                 .substring(_currentWordEnd!)),
+          //     ],
+          //   ),
+          // ),
+          Container(
+            margin: EdgeInsets.only(bottom: 180, right: 25, left: 25),
+            child: Column(
+               
+              children: [
+                Text(
+                  "Tulisanmu akan menjadi suara di sini",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.yellow[700],
+                    fontWeight: bold,
+                    fontSize: 20
                   ),
-                if (_currentWordEnd != null)
-                  TextSpan(
-                      text: _textEditingController.text
-                          .substring(_currentWordEnd!)),
+                ),
+                
               ],
             ),
-          ),
+          )
         ],
       ),
     );
   }
 
   Widget _textEntryField() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: TextField(
-        controller: _textEditingController,
-        decoration: InputDecoration(
-          hintText: 'Enter text here',
+    return Expanded(
+      flex: 3,
+      child: Container(
+        margin: EdgeInsets.only(bottom: 40, top: 10),
+        color: Colors.white,
+        width: 350,
+        child: SingleChildScrollView(
+          child: TextField(
+            controller: _textEditingController,
+            style: TextStyle(
+              color: Colors.blue[700],
+              fontWeight: bold
+            ),
+            minLines: 1,
+            maxLines: 999,
+            // enabled: false,
+            decoration: InputDecoration(
+              hintText: "Tulis kalimatmu disini",
+              hintStyle: TextStyle(
+                fontSize: 17,
+                color: Colors.grey,
+              ),
+              contentPadding:
+                  EdgeInsets.symmetric(vertical: 12, horizontal: 15),
+              // border: OutlineInputBorder(),
+              // focusedBorder: OutlineInputBorder(
+              //   borderSide: BorderSide(color: Colors.blue)
+              // ),
+            ),
+          ),
         ),
       ),
     );
   }
+
+  
 
   Widget _speakerSelector() {
     return DropdownButton(

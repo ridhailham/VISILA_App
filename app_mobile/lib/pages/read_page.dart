@@ -37,6 +37,7 @@ class _ListenPageState extends State<ReadPage> {
 
   void initSpeech() async {
     _speechEnable = await _speechToText.initialize();
+
     setState(() {});
   }
 
@@ -62,43 +63,38 @@ class _ListenPageState extends State<ReadPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[300],
+      backgroundColor: Colors.grey[200],
       appBar: AppBar(
         backgroundColor: Colors.blue[800],
         centerTitle: true,
-        
+
         // backgroundColor: Colors.blue[800],
         iconTheme: IconThemeData(color: Colors.white),
-        
+
         title: Text(
           "VISILA read",
-          style: TextStyle(                     
-            color: Colors.white,                      
-            fontSize: 26,                        
-            fontWeight: FontWeight.bold, 
-                      
-
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
           ),
-        // actions: [
-        //   Padding(
-        //     padding: const EdgeInsets.all(8),
-        //     child: InkWell(
-        //       onTap: () {
-        //         Navigator.pop(context);
-        //       },
-        //     ),
-        //   ),
-        // ],
+          // actions: [
+          //   Padding(
+          //     padding: const EdgeInsets.all(8),
+          //     child: InkWell(
+          //       onTap: () {
+          //         Navigator.pop(context);
+          //       },
+          //     ),
+          //   ),
+          // ],
         ),
       ),
-
       body: SafeArea(
-        
         child: Column(
-          
           children: [
             Container(
-              padding: EdgeInsets.only( bottom: 25),
+              padding: EdgeInsets.only(bottom: 25),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(20),
@@ -115,7 +111,7 @@ class _ListenPageState extends State<ReadPage> {
                         Column(
                           children: [
                             Image.asset(
-                              'animations/listen.png',
+                              'animations/read.png',
                               height: 80,
                               fit: BoxFit.cover,
                             ),
@@ -126,7 +122,6 @@ class _ListenPageState extends State<ReadPage> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              
                               Text(
                                 "Untuk ubah suaramu jadi tulisan",
                                 style: TextStyle(
@@ -147,9 +142,9 @@ class _ListenPageState extends State<ReadPage> {
                             ),
                             Text(
                               'Bantuan',
-                              style: TextStyle(color: Colors.white, fontSize: 16),
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 15),
                             )
-                            
                           ],
                         ),
                       ],
@@ -255,27 +250,104 @@ class _ListenPageState extends State<ReadPage> {
             //     ],
             //   ),
             // ),
-            SizedBox(height: 20,),
-            Text("Teks", style: TextStyle(fontSize: 24, color: Colors.blue[800], fontWeight: bold)),
-            
-            Spacer(),
-            
-            
-            Expanded(
-              child: Container(
-                padding: EdgeInsets.all(16),
-                child: Text(
-                  _wordSpoken,
-                  style: const TextStyle(
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold
-                    // fontWeight: FontWeight.w300  
-                  ),
-                )
-              )
+            SizedBox(
+              height: 10,
             ),
 
-            // if (_speechToText.isNotListening && _confidenceLevel > 0) 
+            Container(
+              // margin: EdgeInsets.only(bottom: 10),
+              padding: EdgeInsets.only(top: 10, bottom: 6, left: 6, right: 6),
+              child: Image.asset(
+                _speechToText.isListening
+                    ? "animations/suara.png"
+                    : _speechEnable
+                        ? "animations/speak.png"
+                        : "",
+              ),
+            ),
+
+            Container(
+              margin: EdgeInsets.only(bottom: 16),
+              padding: EdgeInsets.all(4),
+              child: Text(
+                _speechToText.isListening
+                    ? "Sedang mendengarkan..."
+                    : _speechEnable
+                        ? "Apa yang akan kamu katakan?"
+                        : "",
+                style: TextStyle(
+                    color: Colors.yellow[700],
+                    fontSize: 20.0,
+                    // fontWeight: bold
+                    ),
+              ),
+            ),
+
+            Text("Teks",
+                style: TextStyle(
+                    fontSize: 21, color: Colors.blue[800], fontWeight: bold)),
+
+            Expanded(
+              flex: 3,
+              child: Container(
+                margin: EdgeInsets.only(bottom: 40, top: 10),
+                color: Colors.white,
+                width: 350,
+                
+                child: SingleChildScrollView(
+                  child: TextField(
+                        minLines: 1,
+                        maxLines: 999,
+                        enabled: false,
+                        decoration: InputDecoration(
+                          hintText: _wordSpoken,
+                          hintStyle: TextStyle(
+                            fontSize: 20,
+                            color: Colors.black,
+                          ),
+                          contentPadding: EdgeInsets.symmetric(vertical: 12, horizontal: 15),
+                          // border: OutlineInputBorder(),
+                          // focusedBorder: OutlineInputBorder(
+                          //   borderSide: BorderSide(color: Colors.blue)
+                          // ),
+                        ),
+                      ),
+                ),
+                
+              ),
+            ),
+
+            // child: Text(
+                //   _wordSpoken,
+                //   style: const TextStyle(
+                //       fontSize: 25,
+                //       fontWeight: FontWeight.bold,
+                //       // backgroundColor: Colors.blue
+                //       // fontWeight: FontWeight.w300
+                //     ),
+                // ),
+
+
+
+            // Expanded(
+            //   child: Container(
+
+            //     decoration: BoxDecoration(
+            //       color: Colors.red
+            //     ),
+            //     padding: EdgeInsets.all(16),
+            //     child: Text(
+            //       _wordSpoken,
+            //       style: const TextStyle(
+            //         fontSize: 25,
+            //         fontWeight: FontWeight.bold
+            //         // fontWeight: FontWeight.w300
+            //       ),
+            //     )
+            //   )
+            // ),
+
+            // if (_speechToText.isNotListening && _confidenceLevel > 0)
             // Padding(
             //   padding: const EdgeInsets.only(
             //     bottom: 100,
@@ -288,18 +360,6 @@ class _ListenPageState extends State<ReadPage> {
             //       ),
             //     ),
             // ),
-
-            Container(
-              margin: EdgeInsets.only(bottom: 30),
-              padding: EdgeInsets.all(16),
-              child: Text(
-                _speechToText.isListening 
-                  ? "Mendengarkan..." : _speechEnable 
-                  ? "Apa yang akan kamu katakan?" : "",
-                  style: TextStyle(color: Colors.blue[800], fontSize: 20.0, fontWeight: bold),
-              ),
-            ),
-            
           ],
         ),
       ),
@@ -347,7 +407,9 @@ class _ListenPageState extends State<ReadPage> {
               MaterialButton(
                 minWidth: 40,
                 padding: EdgeInsets.only(right: 50),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, '/profile');
+                },
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

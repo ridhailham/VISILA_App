@@ -35,11 +35,38 @@ class _HomePageState extends State<HomePage> {
         return false; // Set to false if you want to disable back button
       },
       child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.blue[800],
+          // centerTitle: true,
+
+          // backgroundColor: Colors.blue[800],
+          iconTheme: IconThemeData(color: Colors.white),
+
+          // title: Text(
+          //   "Halaman Profile",
+          //   style: TextStyle(
+          //     color: Colors.white,
+          //     fontSize: 27,
+          //     fontWeight: FontWeight.bold,
+          //   ),
+          //   // actions: [
+          //   //   Padding(
+          //   //     padding: const EdgeInsets.all(8),
+          //   //     child: InkWell(
+          //   //       onTap: () {
+          //   //         Navigator.pop(context);
+          //   //       },
+          //   //     ),
+          //   //   ),
+          //   // ],
+          // ),
+        ),
         body: SafeArea(
           child: Column(
             children: [
               Container(
-                padding: EdgeInsets.only(top: 25, bottom: 20),
+                margin: EdgeInsets.only(bottom: 35),
+                padding: EdgeInsets.only(bottom: 45),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(20),
@@ -67,7 +94,7 @@ class _HomePageState extends State<HomePage> {
                               ],
                             ),
                             Text(
-                              (_user?.email ?? ""),
+                              _user?.email?.split('@').first ?? "",
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 25,
@@ -82,7 +109,7 @@ class _HomePageState extends State<HomePage> {
                         children: [
                           Image.asset(
                             'animations/homepageAtas.png',
-                            height: 150,
+                            height: 130,
                             fit: BoxFit.cover,
                           ),
                         ],
@@ -91,10 +118,24 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
               ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(width: 25),
+                  Text(
+                    "Yuk Jelajahi Fitur-Fitur VISILA!",
+                    style: TextStyle(
+                      color: Colors.blue[800],
+                      fontSize: 17,
+                      
+                    ),
+                  ),
+                ],
+              ),
               Expanded(
                 child: GridView.count(
                   crossAxisCount: 2,
-                  padding: EdgeInsets.only(top: 55, bottom: 20),
+                  padding: EdgeInsets.only(top: 3, bottom: 20),
                   // Adjust this value to make the cards longer vertically
                   children: <Widget>[
                     Expanded(
@@ -102,7 +143,7 @@ class _HomePageState extends State<HomePage> {
                         margin: const EdgeInsets.all(8),
                         child: InkWell(
                           onTap: () {
-                             Navigator.pushNamed(context, '/camera');
+                            Navigator.pushNamed(context, '/camera');
                           },
                           splashColor: Colors.blue,
                           child: Center(
@@ -133,7 +174,7 @@ class _HomePageState extends State<HomePage> {
                         margin: const EdgeInsets.all(8),
                         child: InkWell(
                           onTap: () {
-                             Navigator.pushNamed(context, '/read');
+                            Navigator.pushNamed(context, '/read');
                           },
                           splashColor: Colors.blue,
                           child: Center(
