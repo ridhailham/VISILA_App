@@ -27,6 +27,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen1> {
     final availHeight = MediaQuery.of(context).size.height - AppBar().preferredSize.height - MediaQuery.of(context).padding.top;
     // TODO: implement build
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       body: SafeArea(child: PageView(
         onPageChanged: (page) {

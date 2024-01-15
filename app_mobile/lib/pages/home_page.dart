@@ -35,12 +35,13 @@ class _HomePageState extends State<HomePage> {
         return false; // Set to false if you want to disable back button
       },
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: AppBar(
           backgroundColor: Colors.blue[800],
           // centerTitle: true,
 
           // backgroundColor: Colors.blue[800],
-          iconTheme: IconThemeData(color: Colors.white),
+          iconTheme: IconThemeData(color: Colors.blue[800]),
 
           // title: Text(
           //   "Halaman Profile",
@@ -66,7 +67,7 @@ class _HomePageState extends State<HomePage> {
             children: [
               Container(
                 margin: EdgeInsets.only(bottom: 35),
-                padding: EdgeInsets.only(bottom: 45),
+                padding: EdgeInsets.only(bottom: 25),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(20),
@@ -88,7 +89,7 @@ class _HomePageState extends State<HomePage> {
                                   "Selamat Datang,",
                                   style: TextStyle(
                                     color: Colors.white,
-                                    fontSize: 20,
+                                    fontSize: 24,
                                   ),
                                 ),
                               ],
@@ -97,7 +98,7 @@ class _HomePageState extends State<HomePage> {
                               _user?.email?.split('@').first ?? "",
                               style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 25,
+                                fontSize: 30,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
@@ -143,6 +144,7 @@ class _HomePageState extends State<HomePage> {
                         margin: const EdgeInsets.all(8),
                         child: InkWell(
                           onTap: () {
+                            // Navigator.pop(context);
                             Navigator.pushNamed(context, '/camera');
                           },
                           splashColor: Colors.blue,
@@ -174,6 +176,7 @@ class _HomePageState extends State<HomePage> {
                         margin: const EdgeInsets.all(8),
                         child: InkWell(
                           onTap: () {
+                            // Navigator.pop(context);
                             Navigator.pushNamed(context, '/read');
                           },
                           splashColor: Colors.blue,
@@ -205,6 +208,7 @@ class _HomePageState extends State<HomePage> {
                         margin: const EdgeInsets.all(8),
                         child: InkWell(
                           onTap: () {
+                            // Navigator.pop(context);
                             Navigator.pushNamed(context, '/listen');
                           },
                           splashColor: Colors.blue,
@@ -306,7 +310,8 @@ class _HomePageState extends State<HomePage> {
                   minWidth: 40,
                   padding: EdgeInsets.only(right: 50),
                   onPressed: () {
-                    Navigator.pushNamed(context, '/profile');
+                    // Navigator.pop(context);
+                    Navigator.pushReplacementNamed(context, '/profile');
                   },
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,

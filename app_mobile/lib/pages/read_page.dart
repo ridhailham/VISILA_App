@@ -63,6 +63,7 @@ class _ListenPageState extends State<ReadPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
         backgroundColor: Colors.blue[800],
@@ -408,18 +409,18 @@ class _ListenPageState extends State<ReadPage> {
                 minWidth: 40,
                 padding: EdgeInsets.only(right: 50),
                 onPressed: () {
-                  Navigator.pushNamed(context, '/profile');
+                  Navigator.pop(context);
                 },
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Icon(
-                      Icons.account_circle,
+                      Icons.home,
                       color: Colors.yellow[700],
                       size: 32,
                     ),
                     Text(
-                      'Profil',
+                      'Home',
                       style: TextStyle(color: Colors.white, fontSize: 15),
                     )
                   ],

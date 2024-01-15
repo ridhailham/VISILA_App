@@ -56,6 +56,7 @@ class _ListenPageState extends State<ListenPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
         backgroundColor: Colors.blue[800],
@@ -139,18 +140,19 @@ class _ListenPageState extends State<ListenPage> {
                 minWidth: 40,
                 padding: EdgeInsets.only(right: 50),
                 onPressed: () {
-                  Navigator.pushNamed(context, '/profile');
+                  Navigator.pop(context);
+                  
                 },
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Icon(
-                      Icons.account_circle,
+                      Icons.home,
                       color: Colors.yellow[700],
                       size: 32,
                     ),
                     Text(
-                      'Profile',
+                      'Home',
                       style: TextStyle(color: Colors.white, fontSize: 15),
                     )
                   ],
@@ -270,34 +272,47 @@ class _ListenPageState extends State<ListenPage> {
 
           Container(
             margin: EdgeInsets.only(bottom: 50, right: 25, left: 25),
-            child: Column(
-              children: [
-                Text("Dengarkan",
-                    style: TextStyle(
-                      
-                        fontSize: 21,
-                        color: const Color.fromRGBO(21, 101, 192, 1),
-                        fontWeight: bold)),
-                        SizedBox(height: 50,),
-                isSpeaking
-                    ? Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset("animations/suara.png"),
-                        
-                        Image.asset("animations/suara.png")
-                      ],
-                    )
-                    : Text(
-                        "Tulisanmu akan menjadi suara di sini",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            color: Colors.yellow[700],
-                            fontWeight: bold,
-                            fontSize: 20),
-                      ),
-              ],
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text("Dengarkan",
+                      style: TextStyle(
+                          fontSize: 20,
+                          color: const Color.fromRGBO(21, 101, 192, 1),
+                          fontWeight: bold)),
+                  Container(
+                    margin: EdgeInsets.only(top: 2),
+                    child: isSpeaking
+                        ? Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image.asset("animations/suara.png"),
+                              Image.asset("animations/suara.png")
+                            ],
+                          )
+                        : Row(
+                            children: [
+                              Image.asset("animations/suara.png"),
+                              Container(
+                                width: 200,
+                                child: Text(
+                                  "Tulisanmu akan menjadi suara di sini",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: Colors.yellow[700],
+                                    fontWeight: bold,
+                                    fontSize: 20,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                  ),
+                ],
+              ),
             ),
           )
         ],
@@ -307,7 +322,7 @@ class _ListenPageState extends State<ListenPage> {
 
   Widget _textEntryField() {
     return Container(
-      height: 180, // Set your desired fixed height
+      height: 250, // Set your desired fixed height
       margin: EdgeInsets.only(bottom: 25, top: 10),
       color: Colors.white,
       width: 350,

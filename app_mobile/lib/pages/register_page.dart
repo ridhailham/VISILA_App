@@ -32,6 +32,7 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       appBar: AppBar(
         actions: [
@@ -40,6 +41,7 @@ class _RegisterPageState extends State<RegisterPage> {
             child: InkWell(
               onTap: () {
                 Navigator.pop(context);
+                
               },
               child: Text(
                 "",
@@ -299,6 +301,8 @@ class _RegisterPageState extends State<RegisterPage> {
 
     if (user != null) {
       print("User is successfully created");
+      // Navigator.pop(context);
+      Navigator.pushReplacementNamed(context, "/home");
     } else {
       print("Some error happend");
     }

@@ -30,6 +30,7 @@ class _HomePageState extends State<CameraPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         backgroundColor: Colors.blue[800],
         centerTitle: true,
@@ -43,7 +44,7 @@ class _HomePageState extends State<CameraPage> {
             color: Colors.white,
             fontSize: 24,
             fontWeight: FontWeight.bold,
-          ),
+          ), 
           // actions: [
           //   Padding(
           //     padding: const EdgeInsets.all(8),
@@ -132,7 +133,7 @@ class _HomePageState extends State<CameraPage> {
       ),
 
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.home, color: Colors.white),
+        child: Icon(Icons.camera_alt, color: Colors.white),
         onPressed: () {},
         backgroundColor: Colors.yellow[700],
         shape: CircleBorder(),
@@ -174,17 +175,19 @@ class _HomePageState extends State<CameraPage> {
               MaterialButton(
                 minWidth: 40,
                 padding: EdgeInsets.only(right: 50),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pop(context);
+                },
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Icon(
-                      Icons.account_circle,
+                      Icons.home,
                       color: Colors.yellow[700],
                       size: 32,
                     ),
                     Text(
-                      'Profil',
+                      'Home',
                       style: TextStyle(color: Colors.white, fontSize: 15),
                     )
                   ],

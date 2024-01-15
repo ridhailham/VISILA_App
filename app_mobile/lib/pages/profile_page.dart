@@ -64,6 +64,7 @@ class _ListenPageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.blue[800],
@@ -303,8 +304,12 @@ class _ListenPageState extends State<ProfilePage> {
                       side: BorderSide(color: Colors.white),
                       backgroundColor: Colors.red[500]),
                   onPressed: () {
+                    
                     FirebaseAuth.instance.signOut();
-                    Navigator.pop(context);
+                    Navigator.pushReplacementNamed(context, '/login');
+                    
+
+                    
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -332,7 +337,8 @@ class _ListenPageState extends State<ProfilePage> {
       floatingActionButton: FloatingActionButton(
         // child: Icon(Icons.home, color: Colors.white),
         onPressed: () {
-          Navigator.pop(context);
+          // Navigator.pop(context);
+          Navigator.pushReplacementNamed(context, '/home');
         },
         child: Icon(
           Icons.home,

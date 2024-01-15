@@ -4,6 +4,7 @@ import 'package:app_mobile/user_auth/firebase_auth_implementation/firebase_auth_
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
 
@@ -26,10 +27,18 @@ class _LoginPageState extends State<LoginPage> {
   void initState() {
     super.initState();
     _authGoogle.authStateChanges().listen((event) {
+      
       setState(() {
         _user = event;
       });
+
+      if (_user != null) {
+        WidgetsBinding.instance?.addPostFrameCallback((_) {
+          Navigator.pushReplacementNamed(context, '/home');
+        });
+      }
     });
+    
   }
 
   @override
@@ -43,6 +52,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset:  false,
       backgroundColor: Colors.white,
       body: Center(
         child: Container(
@@ -51,6 +61,8 @@ class _LoginPageState extends State<LoginPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SizedBox(height: 30),
+              
+
               Text((_user?.email ?? "")),
               Text("WELCOME",
                   style: TextStyle(
@@ -215,7 +227,7 @@ class _LoginPageState extends State<LoginPage> {
 
     if (user != null) {
       print("User is successfully signed in");
-      Navigator.pushNamed(context, '/home');
+      Navigator.pushReplacementNamed(context, '/home');
     } else {
       print("Some error happened");
     }
@@ -230,7 +242,7 @@ class _LoginPageState extends State<LoginPage> {
       // Autentikasi berhasil, pindah ke halaman beranda
       User? user = userCredential.user;
       if (user != null) {
-        Navigator.pushNamed(context, '/home');
+        Navigator.pushReplacementNamed(context, '/home');
       } else {
         print("User is null after Google sign-in");
       }
