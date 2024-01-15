@@ -14,6 +14,7 @@ class _ListenPageState extends State<ListenPage> {
 
   List<Map> _voices = [];
   Map? _currentVoice;
+  bool isSpeaking = false;
 
   int? _currentWordStart, _currentWordEnd;
   TextEditingController _textEditingController = TextEditingController();
@@ -59,7 +60,6 @@ class _ListenPageState extends State<ListenPage> {
       appBar: AppBar(
         backgroundColor: Colors.blue[800],
         centerTitle: true,
-        
 
         // backgroundColor: Colors.blue[800],
         iconTheme: IconThemeData(color: Colors.white),
@@ -90,12 +90,21 @@ class _ListenPageState extends State<ListenPage> {
         backgroundColor: Colors.yellow[700],
         onPressed: () {
           _flutterTts.speak(_textEditingController.text);
+          _flutterTts.setCompletionHandler(() {
+            setState(() {
+              isSpeaking = false;
+            });
+          });
+          setState(() {
+            isSpeaking = true;
+          });
         },
-        child: const Icon(
-          Icons.speaker_phone,
+        child: Icon(
+          isSpeaking ? Icons.volume_up : Icons.volume_off,
           color: Colors.white,
         ),
       ),
+
       // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(
         color: Colors.blue[800],
@@ -222,10 +231,11 @@ class _ListenPageState extends State<ListenPage> {
           ),
           Text("Teks",
               style: TextStyle(
-                  fontSize: 21, color: Colors.blue[800], fontWeight: bold)),
-          
-          _textEntryField(),
+                  fontSize: 21,
+                  color: const Color.fromRGBO(21, 101, 192, 1),
+                  fontWeight: bold)),
 
+          _textEntryField(),
 
           // _speakerSelector(),
 
@@ -257,21 +267,36 @@ class _ListenPageState extends State<ListenPage> {
           //     ],
           //   ),
           // ),
+
           Container(
-            margin: EdgeInsets.only(bottom: 180, right: 25, left: 25),
+            margin: EdgeInsets.only(bottom: 50, right: 25, left: 25),
             child: Column(
-               
               children: [
-                Text(
-                  "Tulisanmu akan menjadi suara di sini",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.yellow[700],
-                    fontWeight: bold,
-                    fontSize: 20
-                  ),
-                ),
-                
+                Text("Dengarkan",
+                    style: TextStyle(
+                      
+                        fontSize: 21,
+                        color: const Color.fromRGBO(21, 101, 192, 1),
+                        fontWeight: bold)),
+                        SizedBox(height: 50,),
+                isSpeaking
+                    ? Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset("animations/suara.png"),
+                        
+                        Image.asset("animations/suara.png")
+                      ],
+                    )
+                    : Text(
+                        "Tulisanmu akan menjadi suara di sini",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: Colors.yellow[700],
+                            fontWeight: bold,
+                            fontSize: 20),
+                      ),
               ],
             ),
           )
@@ -281,42 +306,38 @@ class _ListenPageState extends State<ListenPage> {
   }
 
   Widget _textEntryField() {
-    return Expanded(
-      flex: 3,
-      child: Container(
-        margin: EdgeInsets.only(bottom: 40, top: 10),
-        color: Colors.white,
-        width: 350,
-        child: SingleChildScrollView(
-          child: TextField(
-            controller: _textEditingController,
-            style: TextStyle(
-              color: Colors.blue[700],
-              fontWeight: bold
+    return Container(
+      height: 180, // Set your desired fixed height
+      margin: EdgeInsets.only(bottom: 25, top: 10),
+      color: Colors.white,
+      width: 350,
+      child: SingleChildScrollView(
+        child: TextField(
+          cursorRadius: Radius.circular(20),
+          controller: _textEditingController,
+          style:
+              TextStyle(color: Colors.blue[700], fontWeight: FontWeight.bold),
+          minLines: 1,
+          maxLines: 999,
+          enabled: !isSpeaking,
+          cursorColor: Colors.black,
+          decoration: InputDecoration(
+            border: InputBorder.none,
+            hintText: "Tulis kalimatmu di sini",
+            hintStyle: TextStyle(
+              fontSize: 16,
+              color: Colors.grey,
             ),
-            minLines: 1,
-            maxLines: 999,
-            // enabled: false,
-            decoration: InputDecoration(
-              hintText: "Tulis kalimatmu disini",
-              hintStyle: TextStyle(
-                fontSize: 17,
-                color: Colors.grey,
-              ),
-              contentPadding:
-                  EdgeInsets.symmetric(vertical: 12, horizontal: 15),
-              // border: OutlineInputBorder(),
-              // focusedBorder: OutlineInputBorder(
-              //   borderSide: BorderSide(color: Colors.blue)
-              // ),
-            ),
+            contentPadding: EdgeInsets.symmetric(vertical: 1, horizontal: 15),
+            // border: OutlineInputBorder(),dadadwasdwasadw
+            // focusedBorder: OutlineInputBorder(
+            //   borderSide: BorderSide(color: Colors.blue)
+            // ),
           ),
         ),
       ),
     );
   }
-
-  
 
   Widget _speakerSelector() {
     return DropdownButton(
@@ -830,7 +851,7 @@ class _ListenPageState extends State<ListenPage> {
 //             //     ),
 //             // ),
 
-//             Container(
+//             Container(apa yang akan
 //               margin: EdgeInsets.only(bottom: 30),
 //               padding: EdgeInsets.all(16),
 //               child: Text(
