@@ -58,44 +58,61 @@ class _LoginPageState extends State<LoginPage> {
         child: Container(
           margin: EdgeInsets.symmetric(horizontal: 32),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(height: 30),
               
 
               Text((_user?.email ?? "")),
-              Text("WELCOME",
+              Text("Welcome.",
                   style: TextStyle(
-                      fontSize: 40,
+                      fontSize: 30,
                       fontWeight: FontWeight.bold,
-                      color: Colors.blue[400])),
-              Text("Sign in to continue", style: TextStyle(fontSize: 21)),
-              SizedBox(height: 10),
-              SizedBox(height: 30),
+                      color: Colors.yellow[700])),
+              Text("Sign in to continue", style: TextStyle(fontSize: 17)),
+              SizedBox(height: 30,),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset("animations/welcoming.png"),
+                ],
+              ),
+              SizedBox(height: 20),
+              
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   SizedBox(height: 10),
                   Container(
+                    
                     width: double.infinity,
                     decoration: BoxDecoration(
+                      
                       borderRadius: BorderRadius.circular(10),
                       color: Colors.white,
                     ),
                     child: TextField(
                       controller: _emailController,
                       decoration: InputDecoration(
-                        hintText: "Email",
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.yellow,
+                            
+                          ),
+                        ),
+                        hintText: "Email or Username",
                         hintStyle: TextStyle(
-                          fontSize: 20,
+                          fontSize: 17,
                           color: Colors.grey[600],
                         ),
                         contentPadding:
                             EdgeInsets.symmetric(vertical: 12, horizontal: 15),
-                        border: OutlineInputBorder(),
+                        
                         focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.blue)),
+                            borderSide: BorderSide(color: Colors.yellow)),
                       ),
                     ),
                   ),
@@ -103,6 +120,7 @@ class _LoginPageState extends State<LoginPage> {
                   Container(
                     width: double.infinity,
                     decoration: BoxDecoration(
+                      
                       borderRadius: BorderRadius.circular(10),
                       color: Colors.white,
                     ),
@@ -112,7 +130,7 @@ class _LoginPageState extends State<LoginPage> {
                       decoration: InputDecoration(
                         hintText: "Password",
                         hintStyle: TextStyle(
-                          fontSize: 20,
+                          fontSize: 17,
                           color: Colors.grey[600],
                         ),
                         contentPadding:
@@ -127,10 +145,14 @@ class _LoginPageState extends State<LoginPage> {
                             });
                           },
                         ),
-                        border: OutlineInputBorder(),
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.yellow
+                          ),
+                        ),
                         focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                              color: Colors.blue), // Warna border saat diisi
+                              color: Colors.yellow), // Warna border saat diisi
                         ),
                       ),
                     ),
@@ -139,7 +161,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
               SizedBox(height: 12),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Text("Forgot Password ?",
                       textAlign: TextAlign.right,
@@ -164,14 +186,20 @@ class _LoginPageState extends State<LoginPage> {
                     "Login",
                     style: TextStyle(
                         fontSize: 19,
-                        color: Colors.blue,
-                        fontWeight: FontWeight.bold),
+                        color: Colors.black,
+                        // fontWeight: FontWeight.bold
+                    ),
                   ),
                 ),
               ),
-              Text(
-                "or sign in with",
-                style: TextStyle(color: Colors.grey[700]),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "or sign in with",
+                    style: TextStyle(color: Colors.grey[700], fontSize: 16),
+                  ),
+                ],
               ),
               Container(
                 height: 45,
@@ -179,13 +207,23 @@ class _LoginPageState extends State<LoginPage> {
                 margin: EdgeInsets.symmetric(vertical: 13),
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.blue[300],
-                    side: BorderSide(color: Colors.white),
+                    primary: Colors.white,
+                    side: BorderSide(color: Colors.black),
                   ),
                   onPressed: _handleGoogleSignIn,
-                  child: Text(
-                    "Sign in with Google",
-                    style: TextStyle(color: Colors.white, fontSize: 18),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.abc,
+                      ),
+                      SizedBox(width: 10,),
+                      Text(
+                        "Sign in with Google",
+                        style: TextStyle(color: Colors.black, fontSize: 18),
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -197,17 +235,19 @@ class _LoginPageState extends State<LoginPage> {
                 children: [
                   Text("Don't have an account? ",
                       style: TextStyle(
-                          fontSize: 13,
+                          fontSize: 15,
                           color: Colors.grey[600],
-                          fontWeight: FontWeight.bold)),
+                          // fontWeight: FontWeight.bold
+                          )
+                        ),
                   InkWell(
                     onTap: () {
                       Navigator.pushNamed(context, '/register');
                     },
                     child: Text("Sign up here.",
                         style: TextStyle(
-                            fontSize: 13,
-                            color: Colors.blue[400],
+                            fontSize: 15,
+                            color: Colors.yellow[700],
                             fontWeight: FontWeight.bold)),
                   ),
                 ],

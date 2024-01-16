@@ -9,6 +9,7 @@ import 'package:app_mobile/pages/profile_page.dart';
 import 'package:app_mobile/pages/read_page.dart';
 import 'package:app_mobile/pages/register_page.dart';
 import 'package:app_mobile/pages/speech_page.dart';
+import 'package:app_mobile/pages/splash_page.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -35,7 +36,7 @@ class MyApp extends StatelessWidget {
         //   title: Text("Welcome.", textAlign: TextAlign.end, style: TextStyle(fontSize: 30, fontWeight: bold)),
 
         // )
-        body: const LoginPage(),
+        body: const SplashPage(),
       ),
       routes: <String, WidgetBuilder>{
         '/login': (BuildContext context) => LoginPage(),

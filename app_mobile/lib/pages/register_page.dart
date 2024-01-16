@@ -61,13 +61,35 @@ class _RegisterPageState extends State<RegisterPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
-                "Register",
-                style: TextStyle(
-                    fontSize: 35,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.blue[400]),
+              
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text(
+                    "Register",
+                    style: TextStyle(
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.yellow[700]),
+                  ),
+
+                  
+                ],
               ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text(
+                        "Please fill the form below",
+                        style: TextStyle(
+                            fontSize: 18,
+                            // fontWeight: FontWeight.bold,
+                            color: Colors.black),
+                      ),
+                ],
+              ),
+              SizedBox(height: 20),
+              Image.asset("animations/re.png"),
               SizedBox(
                 height: 11,
               ),
@@ -202,9 +224,9 @@ class _RegisterPageState extends State<RegisterPage> {
                   // ),
                 ],
               ),
-              SizedBox(
-                height: 15,
-              ),
+              // SizedBox(
+              //   height: 5,
+              // ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -259,7 +281,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     child: Text(
                       "Sign Up",
                       style: TextStyle(
-                          color: Colors.blue,
+                          color: Colors.black,
                           fontWeight: FontWeight.bold,
                           fontSize: 17),
                     )),
@@ -270,7 +292,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 children: [
                   Text("Have an account? ",
                       style: TextStyle(
-                          fontSize: 13,
+                          fontSize: 15,
                           color: Colors.grey[600],
                           fontWeight: FontWeight.bold)),
                   InkWell(
@@ -279,8 +301,8 @@ class _RegisterPageState extends State<RegisterPage> {
                     },
                     child: Text("Sign in here.",
                         style: TextStyle(
-                            fontSize: 13,
-                            color: Colors.blue[400],
+                            fontSize: 15,
+                            color: Colors.yellow[700],
                             fontWeight: FontWeight.bold)),
                   ),
                 ],
