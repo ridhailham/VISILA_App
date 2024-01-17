@@ -439,6 +439,9 @@ class _BantuanPageState extends State<BantuanPage> {
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
         backgroundColor: Colors.blue[800],
+        iconTheme: IconThemeData(
+          color: Colors.white,
+        ),
       ),
       body: Container(
         // margin: const EdgeInsets.all(5),

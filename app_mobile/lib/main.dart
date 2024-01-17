@@ -1,10 +1,14 @@
 
+import 'dart:convert';
+
+import 'package:app_mobile/ProductDataModel.dart';
 import 'package:app_mobile/pages/cam_page.dart';
 import 'package:app_mobile/pages/home_page.dart';
 import 'package:app_mobile/pages/listen_page.dart';
 import 'package:app_mobile/pages/login_page.dart';
 import 'package:app_mobile/pages/new_listen_page.dart';
 import 'package:app_mobile/pages/bantuan_page.dart';
+import 'package:app_mobile/pages/news_page.dart';
 import 'package:app_mobile/pages/onboarding1_page.dart';
 import 'package:app_mobile/pages/profile_page.dart';
 import 'package:app_mobile/pages/read_page.dart';
@@ -14,6 +18,8 @@ import 'package:app_mobile/pages/splash_page.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
+
+import 'package:flutter/services.dart' as rootBundle;
 
 
 void main() async {
@@ -37,8 +43,11 @@ class MyApp extends StatelessWidget {
         //   title: Text("Welcome.", textAlign: TextAlign.end, style: TextStyle(fontSize: 30, fontWeight: bold)),
 
         // )
-        body: const SplashPage(),
+
+        body: NewsPage(),
       ),
+
+
       routes: <String, WidgetBuilder>{
         '/login': (BuildContext context) => LoginPage(),
         '/register': (BuildContext context) => RegisterPage(),
@@ -51,5 +60,8 @@ class MyApp extends StatelessWidget {
       },
     );
   }
+
+  
 }
+
 
