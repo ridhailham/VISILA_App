@@ -68,7 +68,7 @@ with SingleTickerProviderStateMixin {
                 'Equality in your hand', 
                 style: TextStyle(
                   fontStyle: FontStyle.italic,
-                  color: Colors.blue,
+                  color: Colors.blue[900],
                   fontSize: 25,
                 )
               ),

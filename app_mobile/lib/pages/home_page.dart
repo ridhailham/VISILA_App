@@ -128,7 +128,6 @@ class _HomePageState extends State<HomePage> {
                     style: TextStyle(
                       color: Colors.blue[800],
                       fontSize: 17,
-                      
                     ),
                   ),
                 ],
@@ -141,6 +140,10 @@ class _HomePageState extends State<HomePage> {
                   children: <Widget>[
                     Expanded(
                       child: Card(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(
+                              12), // Menentukan sudut tumpul
+                        ),
                         margin: const EdgeInsets.all(8),
                         child: InkWell(
                           onTap: () {
@@ -173,6 +176,10 @@ class _HomePageState extends State<HomePage> {
                     ),
                     Expanded(
                       child: Card(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(
+                              12), // Menentukan sudut tumpul
+                        ),
                         margin: const EdgeInsets.all(8),
                         child: InkWell(
                           onTap: () {
@@ -205,6 +212,10 @@ class _HomePageState extends State<HomePage> {
                     ),
                     Expanded(
                       child: Card(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(
+                              12), // Menentukan sudut tumpul
+                        ),
                         margin: const EdgeInsets.all(8),
                         child: InkWell(
                           onTap: () {
@@ -237,9 +248,15 @@ class _HomePageState extends State<HomePage> {
                     ),
                     Expanded(
                       child: Card(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(
+                              12), // Menentukan sudut tumpul
+                        ),
                         margin: const EdgeInsets.all(8),
                         child: InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.pushNamed(context, "/news");
+                          },
                           splashColor: Colors.blue,
                           child: Center(
                             child: Column(
@@ -290,7 +307,9 @@ class _HomePageState extends State<HomePage> {
                 MaterialButton(
                   padding: EdgeInsets.only(left: 50),
                   minWidth: 40,
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(context, "/bantuan");
+                  },
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [

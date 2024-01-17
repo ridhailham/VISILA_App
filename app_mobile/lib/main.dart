@@ -4,6 +4,7 @@ import 'package:app_mobile/pages/home_page.dart';
 import 'package:app_mobile/pages/listen_page.dart';
 import 'package:app_mobile/pages/login_page.dart';
 import 'package:app_mobile/pages/new_listen_page.dart';
+import 'package:app_mobile/pages/bantuan_page.dart';
 import 'package:app_mobile/pages/onboarding1_page.dart';
 import 'package:app_mobile/pages/profile_page.dart';
 import 'package:app_mobile/pages/read_page.dart';
@@ -45,7 +46,8 @@ class MyApp extends StatelessWidget {
         '/listen':(BuildContext context) => ListenPage(),
         '/read':(BuildContext context) => ReadPage(),
         '/camera' : (BuildContext context) => CameraPage(),
-        '/profile' : (BuildContext context) => ProfilePage()
+        '/profile' : (BuildContext context) => ProfilePage(),
+        '/bantuan' : (BuildContext context) => BantuanPage(),
       },
     );
   }
