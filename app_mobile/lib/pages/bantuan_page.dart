@@ -143,7 +143,7 @@ class _BantuanPageState extends State<BantuanPage> {
               Column(
                 children: [
                   Text(
-                    "VISILA cam adalah salah satu fitur untuk menerjemahkan bahasa isyarat menjadi teks sehingga lawan bicara bisa memahami makna dari bahasa isyarat melalui teks.",
+                    "VISILA Cam merupakan fitur utama dari platform VISILA. Dengan VISILA Cam, pengguna dapat menerjemahkan bahasa isyarat abjad melalui kamera perangkat mereka. Fitur ini memainkan peran kunci dalam memudahkan komunikasi dengan penyandang disabilitas tunarungu, membuka peluang lebih luas untuk interaksi dan pertukaran informasi secara inklusif.",
                     style: TextStyle(fontSize: 16, color: Colors.blue[800]),
                     textAlign: TextAlign.justify,
                   ),
@@ -194,7 +194,7 @@ class _BantuanPageState extends State<BantuanPage> {
               Column(
                 children: [
                   Text(
-                    "VISILA read adalah salah satu fitur mengubah suara manjadi teks sehingga lawan bicara yang menyandang disabilitas bisa memahami komunikasi melalui tulisan.",
+                    "VISILA Read adalah fitur yang memungkinkan pengguna mengubah suara menjadi tulisan. Dengan kata lain, fitur ini dapat merespons dan mengonversi pesan lisan atau audio menjadi teks. Ini tidak hanya mendukung aksesibilitas bagi penyandang disabilitas yang mungkin mengalami kesulitan mendengar, tetapi juga memastikan bahwa informasi yang disampaikan dapat diakses melalui berbagai cara.",
                     style: TextStyle(fontSize: 16, color: Colors.blue[800]),
                     textAlign: TextAlign.justify,
                   ),
@@ -245,7 +245,7 @@ class _BantuanPageState extends State<BantuanPage> {
               Column(
                 children: [
                   Text(
-                    "VISILA listen adalah salah satu fitur teks menjadi suara sehingga orang yang menyandang disabilitas bisa menyampaikan informasi atau pesan tanpa melalui lisan",
+                    "VISILA Listen adalah fitur yang memungkinkan pengguna mengubah teks menjadi suara. Dengan menggunakan teknologi pengenalan teks ke suara, fitur ini mendukung aksesibilitas bagi mereka yang mungkin mengalami kesulitan membaca atau memahami teks secara tertulis. VISILA Listen menghadirkan dimensi audio untuk memperluas cara konsumsi informasi melalui platform VISILA, menciptakan lingkungan berita yang lebih inklusif.",
                     style: TextStyle(fontSize: 16, color: Colors.blue[800]),
                     textAlign: TextAlign.justify,
                   ),
@@ -282,7 +282,7 @@ class _BantuanPageState extends State<BantuanPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Apa itu VISILA?",
+                    "Apa itu VISILA news?",
                     style: TextStyle(
                         fontSize: 25,
                         color: Colors.yellow[600],
@@ -296,36 +296,11 @@ class _BantuanPageState extends State<BantuanPage> {
               Column(
                 children: [
                   Text(
-                    "VISILA atau Visual Sign Language Apps merupakan sebuah aplikasi buatan 4 mahasiswa Universitas Brawijaya yang beranggotakan:",
+                    "VISILA News adalah sebuah platform berita yang menghadirkan informasi terkini seputar inklusivitas dan pembaruan terkait penyandang disabilitas tunarungu-wicara. Fokusnya adalah memberikan liputan mendalam dan relevan terkait isu-isu yang berkaitan dengan komunitas tersebut, memastikan aksesibilitas informasi untuk semua.",
                     style: TextStyle(fontSize: 16, color: Colors.blue[800]),
                     textAlign: TextAlign.justify,
                   ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "1. Muhammad Bintang (Hustler)",
-                        style: TextStyle(fontSize: 16, color: Colors.blue[800]),
-                        textAlign: TextAlign.start,
-                      ),
-                      Text(
-                        "2. Fajrul Fallaah HIdayatulloh (Hipster)",
-                        style: TextStyle(fontSize: 16, color: Colors.blue[800]),
-                        textAlign: TextAlign.start,
-                      ),
-                      Text(
-                        "3. Ridha Ilham (Hacker)",
-                        style: TextStyle(fontSize: 16, color: Colors.blue[800]),
-                        textAlign: TextAlign.start,
-                      ),
-                      Text(
-                        "4. Naufal Romero (Hacker)",
-                        style: TextStyle(fontSize: 16, color: Colors.blue[800]),
-                        textAlign: TextAlign.justify,
-                      ),
-                    ],
-                  ),
+                  
                 ],
               ),
             ],
@@ -334,82 +309,7 @@ class _BantuanPageState extends State<BantuanPage> {
       ),
     ),
 
-    Expanded(
-      child: Container(
-        margin: EdgeInsets.only(bottom: 20, top: 10),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12),
-          color: Colors.white,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.5),
-              spreadRadius: 1,
-              blurRadius: 7,
-              offset: Offset(0, 3), // changes position of shadow
-            ),
-          ],
-        ),
-        width: 350,
-        child: SingleChildScrollView(
-          padding: EdgeInsets.only(top: 25, right: 20, left: 20),
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Apa itu VISILA?",
-                    style: TextStyle(
-                        fontSize: 25,
-                        color: Colors.yellow[600],
-                        fontWeight: bold),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 25,
-              ),
-              Column(
-                children: [
-                  Text(
-                    "VISILA atau Visual Sign Language Apps merupakan sebuah aplikasi buatan 4 mahasiswa Universitas Brawijaya yang beranggotakan:",
-                    style: TextStyle(fontSize: 16, color: Colors.blue[800]),
-                    textAlign: TextAlign.justify,
-                  ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "1. Muhammad Bintang (Hustler)",
-                        style: TextStyle(fontSize: 16, color: Colors.blue[800]),
-                        textAlign: TextAlign.start,
-                      ),
-                      Text(
-                        "2. Fajrul Fallaah HIdayatulloh (Hipster)",
-                        style: TextStyle(fontSize: 16, color: Colors.blue[800]),
-                        textAlign: TextAlign.start,
-                      ),
-                      Text(
-                        "3. Ridha Ilham (Hacker)",
-                        style: TextStyle(fontSize: 16, color: Colors.blue[800]),
-                        textAlign: TextAlign.start,
-                      ),
-                      Text(
-                        "4. Naufal Romero (Hacker)",
-                        style: TextStyle(fontSize: 16, color: Colors.blue[800]),
-                        textAlign: TextAlign.justify,
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
-      ),
-    ),
+    
 
     // Icons.home,
     // Icons.explore,
