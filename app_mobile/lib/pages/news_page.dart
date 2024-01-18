@@ -1,34 +1,28 @@
 import 'dart:convert';
-
 import 'package:app_mobile/ProductDataModel.dart';
-import 'package:app_mobile/constants.dart';
-import 'package:app_mobile/pages/cam_page.dart';
-import 'package:app_mobile/pages/home_page.dart';
-import 'package:app_mobile/pages/listen_page.dart';
-import 'package:app_mobile/pages/login_page.dart';
-import 'package:app_mobile/pages/new_listen_page.dart';
-import 'package:app_mobile/pages/bantuan_page.dart';
-import 'package:app_mobile/pages/onboarding1_page.dart';
-import 'package:app_mobile/pages/profile_page.dart';
-import 'package:app_mobile/pages/read_page.dart';
-import 'package:app_mobile/pages/register_page.dart';
-import 'package:app_mobile/pages/speech_page.dart';
-import 'package:app_mobile/pages/splash_page.dart';
 import 'package:app_mobile/widgets/header_news.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:url_launcher/url_launcher.dart';
-
 import 'package:flutter/services.dart' as rootBundle;
 
+import 'package:app_mobile/ProductDataModel.dart';
+
 class NewsPage extends StatefulWidget {
-  const NewsPage({super.key});
+  const NewsPage({Key? key}) : super(key: key);
 
   @override
-  State<NewsPage> createState() => _MyHomePageState();
+  State<NewsPage> createState() => _NewsPageState();
 }
 
-class _MyHomePageState extends State<NewsPage> {
+class _NewsPageState extends State<NewsPage> {
+  late Future<List<ProductDataModel>> data;
+
+  @override
+  void initState() {
+    super.initState();
+    data = readJsonData();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,25 +35,26 @@ class _MyHomePageState extends State<NewsPage> {
         iconTheme: IconThemeData(color: Colors.white),
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(20),
-              bottomRight: Radius.circular(20)),
+            bottomLeft: Radius.circular(20),
+            bottomRight: Radius.circular(20),
+          ),
         ),
       ),
-      body: FutureBuilder(
-        future: ReadJsonData(),
-        builder: (context, data) {
-          if (data.hasError) {
+      body: FutureBuilder<List<ProductDataModel>>(
+        future: data,
+        builder: (context, snapshot) {
+          if (snapshot.hasError) {
             return Center(
-              child: Text("${data.error}"),
+              child: Text("${snapshot.error}"),
             );
-          } else if (data.hasData) {
-            var items = data.data as List<ProductDataModel>;
+          } else if (snapshot.hasData) {
+            var items = snapshot.data!;
             return ListView.builder(
               itemCount: items.length,
               itemBuilder: (context, index) {
                 return InkWell(
-                  onTap: () {
-                    _launchURL(items[index].url.toString());
+                  onTap: () async {
+                    await _launchURL(items[index].url.toString());
                   },
                   child: Card(
                     elevation: 5,
@@ -76,10 +71,8 @@ class _MyHomePageState extends State<NewsPage> {
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(12.0),
                             ),
-                            child: Image(
-                              image: NetworkImage(
-                                items[index].imageURL.toString(),
-                              ),
+                            child: Image.network(
+                              items[index].imageURL.toString(),
                               fit: BoxFit.cover,
                             ),
                           ),
@@ -117,19 +110,29 @@ class _MyHomePageState extends State<NewsPage> {
     );
   }
 
-  Future<List<ProductDataModel>> ReadJsonData() async {
+  Future<void> _launchURL(String url) async {
+    Uri uri = Uri.parse(url);
+
+    if (await canLaunch(uri.toString())) {
+      await launch(uri.toString());
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
+  // Future<void> _launchURL(String url) async {
+  //   if (await canLaunch(url)) {
+  //     await launch(url);
+  //   } else {
+  //     throw 'Could not launch $url';
+  //   }
+  // }
+
+  Future<List<ProductDataModel>> readJsonData() async {
     final jsondata =
         await rootBundle.rootBundle.loadString('jsonfile/productlist.json');
     final list = json.decode(jsondata) as List<dynamic>;
 
     return list.map((e) => ProductDataModel.fromJson(e)).toList();
-  }
-
-  _launchURL(String url) async {
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      print('Could not launch $url');
-    }
   }
 }
