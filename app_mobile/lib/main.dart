@@ -57,6 +57,7 @@ class MyApp extends StatelessWidget {
         '/camera' : (BuildContext context) => CameraPage(),
         '/profile' : (BuildContext context) => ProfilePage(),
         '/bantuan' : (BuildContext context) => BantuanPage(),
+        '/news' : (BuildContext context) => NewsPage(),
       },
     );
   }

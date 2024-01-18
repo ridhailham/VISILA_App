@@ -34,27 +34,27 @@ class _RegisterPageState extends State<RegisterPage> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        actions: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: InkWell(
-              onTap: () {
-                Navigator.pop(context);
+      // appBar: AppBar(
+      //   actions: [
+      //     Padding(
+      //       padding: const EdgeInsets.all(8.0),
+      //       child: InkWell(
+      //         onTap: () {
+      //           Navigator.pop(context);
                 
-              },
-              child: Text(
-                "",
-                style: TextStyle(
-                  fontSize: 13,
-                  color: Colors.grey[600],
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
+      //         },
+      //         child: Text(
+      //           "",
+      //           style: TextStyle(
+      //             fontSize: 13,
+      //             color: Colors.grey[600],
+      //             fontWeight: FontWeight.bold,
+      //           ),
+      //         ),
+      //       ),
+      //     ),
+      //   ],
+      // ),
       body: Center(
         child: Container(
           margin: EdgeInsets.symmetric(horizontal: 32),
