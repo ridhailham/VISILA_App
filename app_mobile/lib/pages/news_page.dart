@@ -17,6 +17,7 @@ import 'package:app_mobile/pages/splash_page.dart';
 import 'package:app_mobile/widgets/header_news.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'package:flutter/services.dart' as rootBundle;
 
@@ -56,51 +57,51 @@ class _MyHomePageState extends State<NewsPage> {
             return ListView.builder(
               itemCount: items.length,
               itemBuilder: (context, index) {
-                return Card(
-                  
-                  elevation: 5,
-                  margin: EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-                  child: Container(
-                    
-                    padding: EdgeInsets.all(8),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Container(
-                          width:
-                              double.infinity, // Menyesuaikan lebar dengan Card
-                          height: 200,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(
-                                12.0), // Membuat sudut tumpul
-                          ), // Atur tinggi sesuai kebutuhan
-                          child: Image(
-                            image:
-                                NetworkImage(items[index].imageURL.toString()),
-                            fit: BoxFit.cover, // Sesuaikan dengan kebutuhan
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.all(8),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                items[index]
-                                    .name
-                                    .toString(), // Menggunakan nama dari data
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                return InkWell(
+                  onTap: () {
+                    _launchURL(items[index].url.toString());
+                  },
+                  child: Card(
+                    elevation: 5,
+                    margin: EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                    child: Container(
+                      padding: EdgeInsets.all(8),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Container(
+                            width: double.infinity,
+                            height: 200,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(12.0),
+                            ),
+                            child: Image(
+                              image: NetworkImage(
+                                items[index].imageURL.toString(),
                               ),
-                              SizedBox(height: 8),
-                            ],
+                              fit: BoxFit.cover,
+                            ),
                           ),
-                        ),
-                      ],
+                          Container(
+                            padding: EdgeInsets.all(8),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  items[index].name.toString(),
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                SizedBox(height: 8),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 );
@@ -122,5 +123,13 @@ class _MyHomePageState extends State<NewsPage> {
     final list = json.decode(jsondata) as List<dynamic>;
 
     return list.map((e) => ProductDataModel.fromJson(e)).toList();
+  }
+
+  _launchURL(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      print('Could not launch $url');
+    }
   }
 }

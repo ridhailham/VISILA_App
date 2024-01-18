@@ -5,6 +5,7 @@ class ProductDataModel {
   String? imageURL;
   String? oldPrice;
   String? price;
+  String? url;
 
   ProductDataModel(this.id, this.name, this.category, this.imageURL,
       this.oldPrice, this.price);
@@ -17,5 +18,6 @@ class ProductDataModel {
     imageURL = json['imageUrl'];
     oldPrice = json['oldPrice'];
     price = json['price'];
+    url = json['url'];
   }
 }
