@@ -38,9 +38,9 @@ class _HomePageState extends State<CameraPage> {
     try {
       socket.on('prediction_result', (data) {
         if (data is String) {
-          String word_response = data;
+          String wordResponse = data;
           setState(() {
-            widget.predictedWord = word_response;
+            widget.predictedWord = wordResponse;
           });
         }
       });
