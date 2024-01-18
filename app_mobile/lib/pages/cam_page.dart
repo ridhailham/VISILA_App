@@ -45,7 +45,7 @@ class _HomePageState extends State<CameraPage> {
         }
       });
 
-      Timer.periodic(const Duration(milliseconds: 1500), (Timer timer) async {
+      Timer.periodic(const Duration(seconds: 1), (Timer timer) async {
         if (!widget.isRecording) {
           timer.cancel();
           return;
@@ -137,6 +137,7 @@ class _HomePageState extends State<CameraPage> {
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         backgroundColor: primaryColor,
+        foregroundColor: Colors.white,
         toolbarHeight: queryData.size.height * 0.17,
         title: const HeaderBar(),
         shape: const RoundedRectangleBorder(
