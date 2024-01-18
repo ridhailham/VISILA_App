@@ -135,7 +135,7 @@ class _MyHomePageState extends State<NewsPage> {
                                     .name
                                     .toString(), // Menggunakan nama dari data
                                 style: TextStyle(
-                                  fontSize: 16,
+                                  fontSize: 18,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
