@@ -15,7 +15,10 @@ import 'package:socket_io_client/socket_io_client.dart' as ws;
 import '../constants.dart';
 
 class CameraPage extends StatefulWidget {
-  const CameraPage({Key? key}) : super(key: key);
+  CameraPage({Key? key}) : super(key: key);
+
+  bool isRecording = false;
+  String predictedWord = "Hasil Prediksi Akan Muncul Disini";
 
   @override
   State<CameraPage> createState() => _HomePageState();
@@ -26,9 +29,6 @@ class _HomePageState extends State<CameraPage> {
   final FirebaseAuth _authGoogle = FirebaseAuth.instance;
 
   User? _user;
-
-  bool isRecording = false;
-  String predictedWord = "Hasil Prediksi Akan Muncul Disini";
   late CameraController _controller;
   late ws.Socket socket;
   int selectedCamera = cameras.length > 1 ? 1 : 0;
@@ -38,15 +38,15 @@ class _HomePageState extends State<CameraPage> {
     try {
       socket.on('prediction_result', (data) {
         if (data is String) {
-          String predictedWord = data;
+          String word_response = data;
           setState(() {
-            predictedWord = predictedWord;
+            widget.predictedWord = word_response;
           });
         }
       });
 
       Timer.periodic(const Duration(milliseconds: 1500), (Timer timer) async {
-        if (!isRecording) {
+        if (!widget.isRecording) {
           timer.cancel();
           return;
         }
@@ -67,12 +67,12 @@ class _HomePageState extends State<CameraPage> {
 
   void toggleRecording() {
     setState(() {
-      isRecording = !isRecording;
+      widget.isRecording = !widget.isRecording;
     });
 
-    if (isRecording) {
+    if (widget.isRecording) {
       setState(() {
-        predictedWord = "Hasil Prediksi Akan Muncul Disini";
+        widget.predictedWord = "Hasil Prediksi Akan Muncul Disini";
       });
       _onCameraCapture();
     }
@@ -172,7 +172,7 @@ class _HomePageState extends State<CameraPage> {
                           child: TextButton(
                             onPressed: () {
                               setState(() {
-                                isRecording = false;
+                                widget.isRecording = false;
 
                                 if (cameras.length > 1) {
                                   selectedCamera = selectedCamera == 0 ? 1 : 0;
@@ -192,7 +192,7 @@ class _HomePageState extends State<CameraPage> {
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  isRecording ? "Menerjemahkan.." : "Mulai Menerjemahkan !",
+                  widget.isRecording ? "Menerjemahkan.." : "Mulai Menerjemahkan !",
                   textAlign: TextAlign.center,
                   style: GoogleFonts.lato(
                     color: primaryColor,
@@ -213,7 +213,7 @@ class _HomePageState extends State<CameraPage> {
                   width: queryData.size.width * 0.9,
                   padding: const EdgeInsets.all(10),
                   child: Text(
-                    predictedWord,
+                    widget.predictedWord,
                     style: GoogleFonts.lato(
                       color: primaryColor,
                       fontSize: 20,
@@ -232,7 +232,7 @@ class _HomePageState extends State<CameraPage> {
         },
         backgroundColor: Colors.yellow[700],
         shape: const CircleBorder(),
-        child: isRecording
+        child: widget.isRecording
             ? const Icon(
                 Icons.stop,
                 color: Colors.white,
