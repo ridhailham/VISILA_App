@@ -44,7 +44,7 @@ class MyApp extends StatelessWidget {
 
         // )
 
-        body: BantuanPage(),
+        body: SplashPage(),
       ),
 
 
