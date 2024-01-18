@@ -52,6 +52,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
       resizeToAvoidBottomInset:  false,
       backgroundColor: Colors.white,
       body: Center(
@@ -64,7 +65,7 @@ class _LoginPageState extends State<LoginPage> {
               SizedBox(height: 30),
               
 
-              Text((_user?.email ?? "")),
+              // Text((_user?.email ?? "")),
               Text("Welcome.",
                   style: TextStyle(
                       fontSize: 30,

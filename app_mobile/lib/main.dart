@@ -47,7 +47,7 @@ class MyApp extends StatelessWidget {
 
         // )
 
-        body: CameraPage(),
+        body: SplashPage(),
       ),
 
 

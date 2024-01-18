@@ -212,7 +212,7 @@ class _ListenPageState extends State<ListenPage> {
                       Column(
                         children: [
                           Icon(
-                            Icons.help_outline,
+                            Icons.question_mark,
                             color: Colors.yellow[700],
                             size: 40,
                           ),

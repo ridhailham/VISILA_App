@@ -14,6 +14,7 @@ import 'package:app_mobile/pages/read_page.dart';
 import 'package:app_mobile/pages/register_page.dart';
 import 'package:app_mobile/pages/speech_page.dart';
 import 'package:app_mobile/pages/splash_page.dart';
+import 'package:app_mobile/widgets/header_news.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -34,58 +35,14 @@ class _MyHomePageState extends State<NewsPage> {
       appBar: AppBar(
         toolbarHeight: 150,
         centerTitle: true,
-        title: Container(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Image.asset(
-                "animations/news.png",
-                height: 100,
-                fit: BoxFit.cover,
-              ),
-              SizedBox(
-                width: 15,
-              ),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "VISILA news",
-                      style: TextStyle(
-                          fontSize: 30, color: Colors.white, fontWeight: bold),
-                    ),
-                    Container(
-                        child: Text(
-                      "Ada berita yang",
-                      style: TextStyle(color: Colors.white, fontSize: 18),
-                    )),
-                    Container(
-                        child: Text(
-                      "menarik buat kamu",
-                      style: TextStyle(color: Colors.white, fontSize: 18),
-                    ))
-                  ],
-                ),
-              ),
-              Column(
-                children: [
-                  Icon(
-                    Icons.help_outline,
-                    color: Colors.yellow[700],
-                    size: 50,
-                  ),
-                  Text(
-                    "Bantuan",
-                    style: TextStyle(color: Colors.white, fontSize: 15),
-                  )
-                ],
-              )
-            ],
-          ),
-        ),
+        title: HeaderNews(),
         backgroundColor: Colors.blue[800],
+        iconTheme: IconThemeData(color: Colors.white),
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(20),
+              bottomRight: Radius.circular(20)),
+        ),
       ),
       body: FutureBuilder(
         future: ReadJsonData(),

@@ -367,7 +367,7 @@ class _BantuanPageState extends State<BantuanPage> {
                         Column(
                           children: [
                             Icon(
-                              Icons.help_outline,
+                              Icons.question_mark,
                               color: Colors.yellow[700],
                               size: 85,
                             ),

@@ -278,7 +278,7 @@ class _ListenPageState extends State<ProfilePage> {
                 children: [
                   Row(
                     children: [
-                      Text("Nama",
+                      Text("Email",
                           style: TextStyle(
                               fontSize: 30,
                               color: Colors.yellow[800],
@@ -286,8 +286,9 @@ class _ListenPageState extends State<ProfilePage> {
                               height: 2)),
                     ],
                   ),
+                  
                   Text(
-                    _user?.email?.split('@').first ?? "",
+                    _user?.email ?? "",
                     style: TextStyle(color: Colors.blue[800], fontSize: 25, height: 2),
                     
                   ),
@@ -306,9 +307,11 @@ class _ListenPageState extends State<ProfilePage> {
                   onPressed: () {
                     
                     FirebaseAuth.instance.signOut();
-                    Navigator.pushReplacementNamed(context, '/login');
                     
-
+                    Navigator.pushReplacementNamed(context, '/login');
+                    // Navigator.pop(context);
+                    
+ 
                     
                   },
                   child: Row(
