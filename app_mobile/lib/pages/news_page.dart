@@ -30,30 +30,45 @@ class _MyHomePageState extends State<NewsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[200],
       appBar: AppBar(
-        
         toolbarHeight: 150,
         centerTitle: true,
         title: Container(
-          
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Image.asset("animations/news.png", height: 100, fit: BoxFit.cover,),
-              SizedBox(width: 15,),
+              Image.asset(
+                "animations/news.png",
+                height: 100,
+                fit: BoxFit.cover,
+              ),
+              SizedBox(
+                width: 15,
+              ),
               Expanded(
-                
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("VISILA news", style: TextStyle(fontSize: 30,color: Colors.white, fontWeight: bold),),
-                    Container(child: Text("Ada berita yang", style: TextStyle(color: Colors.white, fontSize: 18),)),
-                    Container(child: Text("menarik buat kamu", style: TextStyle(color: Colors.white, fontSize: 18),))
+                    Text(
+                      "VISILA news",
+                      style: TextStyle(
+                          fontSize: 30, color: Colors.white, fontWeight: bold),
+                    ),
+                    Container(
+                        child: Text(
+                      "Ada berita yang",
+                      style: TextStyle(color: Colors.white, fontSize: 18),
+                    )),
+                    Container(
+                        child: Text(
+                      "menarik buat kamu",
+                      style: TextStyle(color: Colors.white, fontSize: 18),
+                    ))
                   ],
                 ),
               ),
-              
               Column(
                 children: [
                   Icon(
@@ -61,7 +76,10 @@ class _MyHomePageState extends State<NewsPage> {
                     color: Colors.yellow[700],
                     size: 50,
                   ),
-                  Text("Bantuan", style: TextStyle(color: Colors.white, fontSize: 15),)
+                  Text(
+                    "Bantuan",
+                    style: TextStyle(color: Colors.white, fontSize: 15),
+                  )
                 ],
               )
             ],
@@ -82,9 +100,11 @@ class _MyHomePageState extends State<NewsPage> {
               itemCount: items.length,
               itemBuilder: (context, index) {
                 return Card(
+                  
                   elevation: 5,
                   margin: EdgeInsets.symmetric(horizontal: 10, vertical: 6),
                   child: Container(
+                    
                     padding: EdgeInsets.all(8),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -111,14 +131,15 @@ class _MyHomePageState extends State<NewsPage> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                items[index].name.toString(), // Menggunakan nama dari data
+                                items[index]
+                                    .name
+                                    .toString(), // Menggunakan nama dari data
                                 style: TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
                                 ),
-                              ), 
+                              ),
                               SizedBox(height: 8),
-                              
                             ],
                           ),
                         ),
