@@ -15,15 +15,18 @@ import 'package:app_mobile/pages/read_page.dart';
 import 'package:app_mobile/pages/register_page.dart';
 import 'package:app_mobile/pages/speech_page.dart';
 import 'package:app_mobile/pages/splash_page.dart';
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
 import 'package:flutter/services.dart' as rootBundle;
 
+late List<CameraDescription> cameras;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  cameras = await availableCameras();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -44,7 +47,7 @@ class MyApp extends StatelessWidget {
 
         // )
 
-        body: SplashPage(),
+        body: CameraPage(),
       ),
 
 

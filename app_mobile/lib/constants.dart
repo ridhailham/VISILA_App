@@ -4,6 +4,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+const Color primaryColor = Color(0xFF005B99);
+const Color secondaryColor = Color(0xFFF8BD00);
+
 Color whiteColor = Color(0xffffffff);
 Color textColor = Color(0xffffffff);
 

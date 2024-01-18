@@ -1,8 +1,18 @@
-import 'package:app_mobile/constants.dart';
+import 'dart:async';
+import 'dart:convert';
+import 'dart:developer';
+
+import 'package:app_mobile/main.dart';
 import 'package:app_mobile/user_auth/firebase_auth_implementation/firebase_auth_services.dart';
+import 'package:app_mobile/widgets/header_bar.dart';
+import 'package:camera/camera.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
+import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:socket_io_client/socket_io_client.dart' as ws;
+
+import '../constants.dart';
 
 class CameraPage extends StatefulWidget {
   const CameraPage({Key? key}) : super(key: key);
@@ -17,9 +27,97 @@ class _HomePageState extends State<CameraPage> {
 
   User? _user;
 
+  bool isRecording = false;
+  String predictedWord = "Hasil Prediksi Akan Muncul Disini";
+  late CameraController _controller;
+  late ws.Socket socket;
+  int selectedCamera = cameras.length > 1 ? 1 : 0;
+
+  void _onCameraCapture() async {
+    _controller.setFlashMode(FlashMode.off);
+    try {
+      socket.on('prediction_result', (data) {
+        if (data is String) {
+          String predictedWord = data;
+          setState(() {
+            predictedWord = predictedWord;
+          });
+        }
+      });
+
+      Timer.periodic(const Duration(milliseconds: 1500), (Timer timer) async {
+        if (!isRecording) {
+          timer.cancel();
+          return;
+        }
+
+        try {
+          final videoPath = await _controller.takePicture();
+          String videoBase64 = base64Encode(await videoPath.readAsBytes());
+
+          socket.emit('process_image', videoBase64);
+        } catch (e) {
+          log("$e");
+        }
+      });
+    } catch (e) {
+      log("$e");
+    }
+  }
+
+  void toggleRecording() {
+    setState(() {
+      isRecording = !isRecording;
+    });
+
+    if (isRecording) {
+      setState(() {
+        predictedWord = "Hasil Prediksi Akan Muncul Disini";
+      });
+      _onCameraCapture();
+    }
+  }
+
+  void _initCamera() async {
+    _controller =
+        CameraController(cameras[selectedCamera], ResolutionPreset.medium);
+    _controller.initialize().then((_) {
+      if (!mounted) {
+        return;
+      }
+
+      _connectSocket();
+    }).catchError((Object e) {
+      if (e is CameraException) {
+        switch (e.code) {
+          case 'CameraAccessDenied':
+            // Handle access errors here.
+            break;
+          default:
+            // Handle other errors here.
+            break;
+        }
+      }
+    });
+  }
+
+  void _connectSocket() {
+    socket =
+        ws.io('https://new-pumped-gannet.ngrok-free.app', <String, dynamic>{
+      'transports': ['websocket'],
+    });
+
+    socket.onConnect((_) {
+      log('Connected to server');
+    });
+
+    socket.connect();
+  }
+
   @override
   void initState() {
     super.initState();
+    _initCamera();
     _authGoogle.authStateChanges().listen((event) {
       setState(() {
         _user = event;
@@ -29,127 +127,129 @@ class _HomePageState extends State<CameraPage> {
 
   @override
   Widget build(BuildContext context) {
+    MediaQueryData queryData = MediaQuery.of(context);
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        backgroundColor: Colors.blue[800],
-        centerTitle: true,
-
-        // backgroundColor: Colors.blue[800],
-        iconTheme: IconThemeData(color: Colors.white),
-
-        title: Text(
-          "VISILA cam",
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
-          ), 
-          // actions: [
-          //   Padding(
-          //     padding: const EdgeInsets.all(8),
-          //     child: InkWell(
-          //       onTap: () {
-          //         Navigator.pop(context);
-          //       },
-          //     ),
-          //   ),
-          // ],
+        backgroundColor: primaryColor,
+        toolbarHeight: queryData.size.height * 0.17,
+        title: const HeaderBar(),
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(20),
+              bottomRight: Radius.circular(20)),
         ),
       ),
       body: SafeArea(
-        child: Column(
-          children: [
-            
-            Container(
-              padding: EdgeInsets.only(bottom: 25),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(20),
-                  bottomRight: Radius.circular(20),
-                ),
-                color: Colors.blue[800],
-              ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25),
-                child: Column(
-                  children: [
-                    Row(
+        child: Center(
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.only(bottom: 40, top: 8),
+            child: Column(
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.black),
+                  constraints: BoxConstraints.expand(
+                    width: queryData.size.width * 0.92,
+                    height: queryData.size.height * 0.55,
+                  ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: Stack(
                       children: [
-                        Column(
-                          children: [
-                            Image.asset(
-                              'animations/cam.png',
-                              height: 80,
-                              fit: BoxFit.cover,
-                            ),
-                          ],
+                        Positioned.fill(
+                          child: CameraPreview(_controller),
                         ),
-                        SizedBox(width: 15),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Untuk terjemah bahasa isyaratmu",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 18,
-                                ),
-                              ),
-                            ],
+                        Positioned(
+                          top: 4,
+                          right: 0,
+                          child: TextButton(
+                            onPressed: () {
+                              setState(() {
+                                isRecording = false;
+
+                                if (cameras.length > 1) {
+                                  selectedCamera = selectedCamera == 0 ? 1 : 0;
+                                }
+                              });
+                              _initCamera();
+                            },
+                            child: const Icon(
+                              Icons.flip_camera_ios,
+                              color: Colors.white,
+                            ),
                           ),
-                        ),
-                        SizedBox(width: 10),
-                        Column(
-                          children: [
-                            Icon(
-                              Icons.help_outline,
-                              color: Colors.yellow[700],
-                              size: 40,
-                            ),
-                            Text(
-                              'Bantuan',
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 15),
-                            )
-                          ],
                         ),
                       ],
                     ),
-                  ],
+                  ),
                 ),
-              ),
+                const SizedBox(height: 8),
+                Text(
+                  isRecording ? "Menerjemahkan.." : "Mulai Menerjemahkan !",
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.lato(
+                    color: primaryColor,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Container(
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(
+                      color: secondaryColor,
+                    ),
+                    // color: ,
+                  ),
+                  width: queryData.size.width * 0.9,
+                  padding: const EdgeInsets.all(10),
+                  child: Text(
+                    predictedWord,
+                    style: GoogleFonts.lato(
+                      color: primaryColor,
+                      fontSize: 20,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
+              ],
             ),
-
-            // ISI MACHINE LEARNING BAGIAN SINI
-            // ISI MACHINE LEARNING BAGIAN SINI
-            // ISI MACHINE LEARNING BAGIAN SINI
-            // ISI MACHINE LEARNING BAGIAN SINI
-            
-            
-          ],
+          ),
         ),
       ),
-
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.camera_alt, color: Colors.white),
-        onPressed: () {},
+        onPressed: () {
+          toggleRecording();
+        },
         backgroundColor: Colors.yellow[700],
-        shape: CircleBorder(),
+        shape: const CircleBorder(),
+        child: isRecording
+            ? const Icon(
+                Icons.stop,
+                color: Colors.white,
+              )
+            : const Icon(
+                Icons.videocam,
+                color: Colors.white,
+              ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-
       bottomNavigationBar: BottomAppBar(
-        
         color: Colors.blue[800],
         shape: CircularNotchedRectangle(),
-        
         notchMargin: 10,
         child: Container(
           height: 60,
           child: Row(
-            
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
