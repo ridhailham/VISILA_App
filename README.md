@@ -7,7 +7,6 @@ Kami adalah VISILA Team yang beranggotakan mahasiswa Universitas Brawijaya:
 4. Naufal Romero Putra Pratama (Hacker)
 
 </br>
-</br>
 
 # Source Code
 
