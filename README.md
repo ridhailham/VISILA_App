@@ -25,7 +25,7 @@ Tech Stack
     </tr>
     <tr>
       <td>Tensorflow</td>
-      <td>To provide all application needs related to server infrastructure</td>
+      <td>Digunakan untuk melatih sistem berdasarkan kumpulan data</td>
     </tr>
     <tr>
       <td>Flask</td>
