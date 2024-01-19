@@ -1,4 +1,4 @@
-DESKRIPSI TIM:
+# DESKRIPSI TIM:
 </br>
 Kami adalah VISILA Team yang beranggotakan mahasiswa Universitas Brawijaya:
 1. Muhammad Bintang Saktya R. (Hustler)
@@ -16,7 +16,7 @@ Kami adalah VISILA Team yang beranggotakan mahasiswa Universitas Brawijaya:
 
 </br>
 
-DEKSRIPSI PRODUK:
+# DEKSRIPSI PRODUK:
 </br>
 Tech Stack
 </br>
@@ -55,7 +55,7 @@ dengan poin SDGs ke 10 : Reduced Inequality, produk ini mendukung inklusivitas b
 </br>
 </br>
 
-SCREENSHOOT PRODUK:
+# SCREENSHOOT PRODUK:
 </br>
 </br>
 
