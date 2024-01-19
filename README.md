@@ -1,4 +1,4 @@
-DESKRIPSI TIM:
+# DESKRIPSI TIM:
 </br>
 Kami adalah VISILA Team yang beranggotakan mahasiswa Universitas Brawijaya:
 1. Muhammad Bintang Saktya R. (Hustler)
@@ -7,42 +7,44 @@ Kami adalah VISILA Team yang beranggotakan mahasiswa Universitas Brawijaya:
 4. Naufal Romero Putra Pratama (Hacker)
 
 </br>
+
+# Source Code
+
+## [Mobile App](https://github.com/ridhailham/VISILA_App/tree/main).
+
+## [Back End](https://github.com/ridhailham/VISILA_App/tree/main).
+
 </br>
 
-DEKSRIPSI PRODUK:
+# DEKSRIPSI PRODUK:
 </br>
 Tech Stack
 </br>
 <table>
-  
   <tbody>
     <tr>
-      
       <td>Flutter</td>
-      <td>Front End Mobile</td>
+      <td>Front End Mobile App</td>
     </tr>
     <tr>
-      
       <td>Firebase Authentication</td>
       <td>Digunakan untuk membangun otorisasi dan sistem penyimpanan aplikasi</td>
     </tr>
     <tr>
-      
       <td>Tensorflow</td>
-      <td>To provide all application needs related to server infrastructure</td>
+      <td>Digunakan untuk melatih sistem berdasarkan kumpulan data</td>
     </tr>
     <tr>
-      
       <td>Flask</td>
       <td>Untuk mengakomodasi soket i/o</td>
     </tr>
     <tr>
-      
       <td>Mediapipe</td>
       <td>Digunakan untuk mengembangkan bahasa isyarat pengenalan pola</td>
     </tr>
   </tbody>
 </table>
+
 </br>
 Aplikasi mobile dengan Sistem Komunikasi Visual Terintegrasi Berbasis Image Processing dan Machine Learning untuk Menerjemahkan Bahasa Isyarat Target Pengguna: Penyandang Tunarungu-Wicara Relevansi
 dengan poin SDGs ke 10 : Reduced Inequality, produk ini mendukung inklusivitas bagi disabilitas dengan non-disabilitas Fitur Produk: 
@@ -53,7 +55,7 @@ dengan poin SDGs ke 10 : Reduced Inequality, produk ini mendukung inklusivitas b
 </br>
 </br>
 
-SCREENSHOOT PRODUK:
+# SCREENSHOOT PRODUK:
 </br>
 </br>
 
@@ -70,4 +72,10 @@ SCREENSHOOT PRODUK:
 ![alt text](https://github.com/ridhailham/VISILA_App/blob/main/screenshoot/bantuan3.png?raw=true)
 ![alt text](https://github.com/ridhailham/VISILA_App/blob/main/screenshoot/bantuan4.png?raw=true)
 ![alt text](https://github.com/ridhailham/VISILA_App/blob/main/screenshoot/bantuan5.png?raw=true)
+
+</br>
+
+# Lisensi
+</br>
+© VISILA - Hackfest by Google Indonesia 2024
 
