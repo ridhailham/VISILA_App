@@ -25,7 +25,7 @@ Tech Stack
   <tbody>
     <tr>
       <td>Flutter</td>
-      <td>Front End Mobile</td>
+      <td>Front End Mobile App</td>
     </tr>
     <tr>
       <td>Firebase Authentication</td>
