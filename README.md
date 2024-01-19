@@ -14,35 +14,30 @@ DEKSRIPSI PRODUK:
 Tech Stack
 </br>
 <table>
-  
   <tbody>
     <tr>
-      
       <td>Flutter</td>
       <td>Front End Mobile</td>
     </tr>
     <tr>
-      
       <td>Firebase Authentication</td>
       <td>Digunakan untuk membangun otorisasi dan sistem penyimpanan aplikasi</td>
     </tr>
     <tr>
-      
       <td>Tensorflow</td>
       <td>To provide all application needs related to server infrastructure</td>
     </tr>
     <tr>
-      
       <td>Flask</td>
       <td>Untuk mengakomodasi soket i/o</td>
     </tr>
     <tr>
-      
       <td>Mediapipe</td>
       <td>Digunakan untuk mengembangkan bahasa isyarat pengenalan pola</td>
     </tr>
   </tbody>
 </table>
+
 </br>
 Aplikasi mobile dengan Sistem Komunikasi Visual Terintegrasi Berbasis Image Processing dan Machine Learning untuk Menerjemahkan Bahasa Isyarat Target Pengguna: Penyandang Tunarungu-Wicara Relevansi
 dengan poin SDGs ke 10 : Reduced Inequality, produk ini mendukung inklusivitas bagi disabilitas dengan non-disabilitas Fitur Produk: 
