@@ -12,7 +12,7 @@ Kami adalah VISILA Team yang beranggotakan mahasiswa Universitas Brawijaya:
 
 ## [Mobile App](https://github.com/ridhailham/VISILA_App/tree/main).
 
-## [Back End](https://github.com/ridhailham/VISILA_App/tree/main).
+## [Back End](https://github.com/bintangsaktya/visila).
 
 </br>
 
