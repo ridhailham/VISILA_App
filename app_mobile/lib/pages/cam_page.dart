@@ -257,7 +257,9 @@ class _HomePageState extends State<CameraPage> {
               MaterialButton(
                 padding: EdgeInsets.only(left: 50),
                 minWidth: 40,
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushReplacementNamed(context, "/bantuan");
+                },
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

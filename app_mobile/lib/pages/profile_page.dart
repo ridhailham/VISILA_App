@@ -304,13 +304,13 @@ class _ListenPageState extends State<ProfilePage> {
                       primary: Colors.white,
                       side: BorderSide(color: Colors.white),
                       backgroundColor: Colors.red[500]),
-                  onPressed: () {
+                  onPressed: () async {
                     
                     FirebaseAuth.instance.signOut();
                     
-                    Navigator.pushReplacementNamed(context, '/login');
-                    // Navigator.pop(context);
                     
+                    await Future.delayed(Duration(milliseconds: 1));
+                    Navigator.pushReplacementNamed(context, '/login');
  
                     
                   },

@@ -309,6 +309,7 @@ class _HomePageState extends State<HomePage> {
                   minWidth: 40,
                   onPressed: () {
                     Navigator.pushNamed(context, "/bantuan");
+                    
                   },
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,

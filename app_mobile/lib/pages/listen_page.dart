@@ -1,6 +1,7 @@
 import 'package:app_mobile/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ListenPage extends StatefulWidget {
   const ListenPage({Key? key}) : super(key: key);
@@ -120,7 +121,9 @@ class _ListenPageState extends State<ListenPage> {
               MaterialButton(
                 padding: EdgeInsets.only(left: 50),
                 minWidth: 40,
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushReplacementNamed(context, "/bantuan");
+                },
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -141,7 +144,6 @@ class _ListenPageState extends State<ListenPage> {
                 padding: EdgeInsets.only(right: 50),
                 onPressed: () {
                   Navigator.pop(context);
-                  
                 },
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -209,18 +211,24 @@ class _ListenPageState extends State<ListenPage> {
                         ),
                       ),
                       SizedBox(width: 10),
-                      Column(
-                        children: [
-                          Icon(
-                            Icons.question_mark,
-                            color: Colors.yellow[700],
-                            size: 40,
-                          ),
-                          Text(
-                            'Bantuan',
-                            style: TextStyle(color: Colors.white, fontSize: 15),
-                          )
-                        ],
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pushReplacementNamed(context, "/bantuan");
+                        },
+                        child: Column(
+                          children: [
+                            const Icon(Icons.question_mark,
+                                color: secondaryColor, size: 40),
+                            Text(
+                              "Bantuan",
+                              style: GoogleFonts.lato(
+                                color: Colors.white,
+                                fontSize: 12,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),

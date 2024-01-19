@@ -42,7 +42,9 @@ class HeaderNews extends StatelessWidget {
           width: 10,
         ),
         TextButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pushReplacementNamed(context, "/bantuan");
+          },
           child: Column(
             children: [
               const Icon(Icons.question_mark, color: secondaryColor, size: 40),

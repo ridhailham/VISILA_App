@@ -2,6 +2,7 @@ import 'package:app_mobile/constants.dart';
 import 'package:app_mobile/user_auth/firebase_auth_implementation/firebase_auth_services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:speech_to_text/speech_to_text.dart';
 
@@ -134,19 +135,24 @@ class _ListenPageState extends State<ReadPage> {
                           ),
                         ),
                         SizedBox(width: 10),
-                        Column(
-                          children: [
-                            Icon(
-                              Icons.question_mark,
-                              color: Colors.yellow[700],
-                              size: 40,
-                            ),
-                            Text(
-                              'Bantuan',
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 15),
-                            )
-                          ],
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pushReplacementNamed(context, "/bantuan");
+                          },
+                          child: Column(
+                            children: [
+                              const Icon(Icons.question_mark,
+                                  color: secondaryColor, size: 40),
+                              Text(
+                                "Bantuan",
+                                style: GoogleFonts.lato(
+                                  color: Colors.white,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ],
                     ),
@@ -277,10 +283,10 @@ class _ListenPageState extends State<ReadPage> {
                         ? "Apa yang akan kamu katakan?"
                         : "",
                 style: TextStyle(
-                    color: Colors.yellow[700],
-                    fontSize: 20.0,
-                    // fontWeight: bold
-                    ),
+                  color: Colors.yellow[700],
+                  fontSize: 20.0,
+                  // fontWeight: bold
+                ),
               ),
             ),
 
@@ -294,41 +300,38 @@ class _ListenPageState extends State<ReadPage> {
                 margin: EdgeInsets.only(bottom: 40, top: 10),
                 color: Colors.white,
                 width: 350,
-                
                 child: SingleChildScrollView(
                   child: TextField(
-                        minLines: 1,
-                        maxLines: 999,
-                        enabled: false,
-                        decoration: InputDecoration(
-                          hintText: _wordSpoken,
-                          hintStyle: TextStyle(
-                            fontSize: 20,
-                            color: Colors.black,
-                          ),
-                          contentPadding: EdgeInsets.symmetric(vertical: 12, horizontal: 15),
-                          // border: OutlineInputBorder(),
-                          // focusedBorder: OutlineInputBorder(
-                          //   borderSide: BorderSide(color: Colors.blue)
-                          // ),
-                        ),
+                    minLines: 1,
+                    maxLines: 999,
+                    enabled: false,
+                    decoration: InputDecoration(
+                      hintText: _wordSpoken,
+                      hintStyle: TextStyle(
+                        fontSize: 20,
+                        color: Colors.black,
                       ),
+                      contentPadding:
+                          EdgeInsets.symmetric(vertical: 12, horizontal: 15),
+                      // border: OutlineInputBorder(),
+                      // focusedBorder: OutlineInputBorder(
+                      //   borderSide: BorderSide(color: Colors.blue)
+                      // ),
+                    ),
+                  ),
                 ),
-                
               ),
             ),
 
             // child: Text(
-                //   _wordSpoken,
-                //   style: const TextStyle(
-                //       fontSize: 25,
-                //       fontWeight: FontWeight.bold,
-                //       // backgroundColor: Colors.blue
-                //       // fontWeight: FontWeight.w300
-                //     ),
-                // ),
-
-
+            //   _wordSpoken,
+            //   style: const TextStyle(
+            //       fontSize: 25,
+            //       fontWeight: FontWeight.bold,
+            //       // backgroundColor: Colors.blue
+            //       // fontWeight: FontWeight.w300
+            //     ),
+            // ),
 
             // Expanded(
             //   child: Container(
@@ -389,7 +392,9 @@ class _ListenPageState extends State<ReadPage> {
               MaterialButton(
                 padding: EdgeInsets.only(left: 50),
                 minWidth: 40,
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushReplacementNamed(context, "/bantuan");
+                },
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

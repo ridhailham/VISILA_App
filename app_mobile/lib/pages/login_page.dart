@@ -50,7 +50,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      // appBar: AppBar(),
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       body: Center(
@@ -60,8 +60,9 @@ class _LoginPageState extends State<LoginPage> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Spacer(),
               SizedBox(height: 30),
-
+              
               // Text((_user?.email ?? "")),
               Text("Welcome.",
                   style: TextStyle(
@@ -230,7 +231,8 @@ class _LoginPageState extends State<LoginPage> {
                             fontWeight: FontWeight.bold)),
                   ),
                 ],
-              )
+              ),
+              Spacer()
             ],
           ),
         ),
@@ -271,16 +273,5 @@ class _LoginPageState extends State<LoginPage> {
     }
   }
 
-  // void _handleGoogleSignIn() {
-  //   try {
-  //     GoogleAuthProvider _googleAuthProvider = GoogleAuthProvider();
-  //     _authGoogle.signInWithProvider(_googleAuthProvider);
-
-  //     Navigator.push(context, MaterialPageRoute(builder: (context) {
-  //       return HomePage();
-  //     }));
-  //   } catch (error) {
-  //     print(error);
-  //   }
-  // }
+  
 }
