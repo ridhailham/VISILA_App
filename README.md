@@ -73,3 +73,9 @@ dengan poin SDGs ke 10 : Reduced Inequality, produk ini mendukung inklusivitas b
 ![alt text](https://github.com/ridhailham/VISILA_App/blob/main/screenshoot/bantuan4.png?raw=true)
 ![alt text](https://github.com/ridhailham/VISILA_App/blob/main/screenshoot/bantuan5.png?raw=true)
 
+</br>
+
+# Lisensi
+</br>
+© VISILA - Hackfest by Google Indonesia 2024
+
