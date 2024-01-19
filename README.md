@@ -12,10 +12,8 @@ Kami adalah VISILA Team yang beranggotakan mahasiswa Universitas Brawijaya:
 # Source Code
 
 ## [Mobile App](https://github.com/ridhailham/VISILA_App/tree/main).
-The source code for the mobile app can be found [here](https://github.com/ridhailham/VISILA_App/tree/main).
 
 ## [Back End](https://github.com/ridhailham/VISILA_App/tree/main).
-The source code for the back end can be found [here](https://github.com/bintangsaktya/visila).
 
 </br>
 
