@@ -63,6 +63,8 @@ dengan poin SDGs ke 10 : Reduced Inequality, produk ini mendukung inklusivitas b
 ![alt text](https://github.com/ridhailham/VISILA_App/blob/main/screenshoot/register.png?raw=true)
 ![alt text](https://github.com/ridhailham/VISILA_App/blob/main/screenshoot/home.png?raw=true)
 ![alt text](https://github.com/ridhailham/VISILA_App/blob/main/screenshoot/camera.png?raw=true)
+![alt text](https://github.com/ridhailham/VISILA_App/blob/main/screenshoot/camera2.png?raw=true)
+![alt text](https://github.com/ridhailham/VISILA_App/blob/main/screenshoot/camera3.png?raw=true)
 ![alt text](https://github.com/ridhailham/VISILA_App/blob/main/screenshoot/listen.png?raw=true)
 ![alt text](https://github.com/ridhailham/VISILA_App/blob/main/screenshoot/read.png?raw=true)
 ![alt text](https://github.com/ridhailham/VISILA_App/blob/main/screenshoot/news.png?raw=true)
